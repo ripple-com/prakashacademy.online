@@ -9,77 +9,81 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .page-section { display: none; }
         .page-section.active { display: block; }
 
-        /* Smooth Background Animations */
-        @keyframes floatSlow {
-            0%, 100% { transform: translate(0px, 0px) scale(1); }
-            50% { transform: translate(30px, -40px) scale(1.1); }
+        /* Modern Gradient Animations */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.08); }
         }
-        @keyframes floatReverse {
-            0%, 100% { transform: translate(0px, 0px) scale(1); }
-            50% { transform: translate(-30px, 40px) scale(0.95); }
-        }
-        .animate-blob1 {
-            animation: floatSlow 12s ease-in-out infinite;
-        }
-        .animate-blob2 {
-            animation: floatReverse 15s ease-in-out infinite;
-        }
+        .animate-glow1 { animation: pulseGlow 8s ease-in-out infinite; }
+        .animate-glow2 { animation: pulseGlow 12s ease-in-out infinite; }
 
-        /* Glassmorphism Styles */
-        .glass-card {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        /* Advanced Glassmorphism */
+        .glass-panel {
+            background: rgba(13, 19, 33, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
         }
-        .glass-header {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(12px);
+        .glass-nav {
+            background: rgba(10, 15, 28, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .site-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .site-card:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.2);
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 relative overflow-x-hidden">
+<body class="bg-[#070b14] text-slate-100 relative overflow-x-hidden selection:bg-emerald-500 selection:text-slate-950">
 
-    <!-- Animated Background Glowing Blobs -->
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none animate-blob1"></div>
-    <div class="absolute top-1/3 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none animate-blob2"></div>
-    <div class="absolute bottom-1/4 left-1/3 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none animate-blob1"></div>
+    <!-- Background Glow Elements -->
+    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none animate-glow1"></div>
+    <div class="absolute top-1/2 right-10 w-[450px] h-[450px] bg-teal-600/10 rounded-full blur-[120px] pointer-events-none animate-glow2"></div>
+    <div class="absolute bottom-10 left-10 w-[400px] h-[400px] bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none animate-glow1"></div>
 
     <!-- Top Navigation Bar -->
-    <header class="glass-header sticky top-0 z-50 border-b border-slate-800/80 transition-all duration-300">
+    <header class="glass-nav sticky top-0 z-50 border-b border-slate-800/60 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 
                 <!-- Brand Logo -->
                 <div class="flex items-center space-x-3 cursor-pointer group" onclick="switchPage('home')">
-                    <div class="bg-gradient-to-tr from-emerald-500 to-teal-400 text-slate-950 p-2.5 rounded-xl shadow-lg shadow-emerald-500/20 font-black group-hover:scale-105 transition-transform">
+                    <div class="bg-gradient-to-tr from-emerald-500 to-teal-400 text-slate-950 p-3 rounded-2xl shadow-lg shadow-emerald-500/25 font-black group-hover:scale-105 transition-transform">
                         <i class="fa-solid fa-graduation-cap text-xl"></i>
                     </div>
                     <div>
-                        <span class="text-xl font-extrabold tracking-wide text-white">Prakash<span class="text-emerald-400"> Academy</span></span>
-                        <p class="text-[10px] text-slate-400 font-semibold tracking-widest uppercase">Sri Lanka</p>
+                        <span class="text-xl font-extrabold tracking-tight text-white">Prakash<span class="text-emerald-400"> Academy</span></span>
+                        <p class="text-[10px] text-slate-400 font-bold tracking-widest uppercase">Sri Lanka Portal</p>
                     </div>
                 </div>
 
                 <!-- Desktop Menu Bar -->
-                <nav class="hidden md:flex space-x-2 font-medium text-sm">
-                    <button onclick="switchPage('home')" id="nav-home" class="px-4 py-2 rounded-xl text-emerald-400 font-semibold transition-all bg-emerald-500/10">Home</button>
-                    <button onclick="switchPage('services')" id="nav-services" class="px-4 py-2 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900">Services</button>
-                    <button onclick="switchPage('promos')" id="nav-promos" class="px-4 py-2 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900">Promo Codes</button>
-                    <button onclick="switchPage('registers')" id="nav-registers" class="px-4 py-2 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900">Register Links</button>
-                    <button onclick="switchPage('videos')" id="nav-videos" class="px-4 py-2 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900">Videos</button>
-                    <button onclick="switchPage('groups')" id="nav-groups" class="px-4 py-2 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900">Groups</button>
-                    <button onclick="switchPage('contact')" id="nav-contact" class="px-4 py-2 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900">Contact Us</button>
+                <nav class="hidden md:flex space-x-1 font-medium text-sm">
+                    <button onclick="switchPage('home')" id="nav-home" class="px-4 py-2.5 rounded-xl text-emerald-400 font-semibold transition-all bg-emerald-500/10 border border-emerald-500/20">Home</button>
+                    <button onclick="switchPage('services')" id="nav-services" class="px-4 py-2.5 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900/60">Services</button>
+                    <button onclick="switchPage('promos')" id="nav-promos" class="px-4 py-2.5 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900/60">Promo Codes</button>
+                    <button onclick="switchPage('registers')" id="nav-registers" class="px-4 py-2.5 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900/60">Register Links</button>
+                    <button onclick="switchPage('videos')" id="nav-videos" class="px-4 py-2.5 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900/60">Videos</button>
+                    <button onclick="switchPage('groups')" id="nav-groups" class="px-4 py-2.5 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900/60">Groups</button>
+                    <button onclick="switchPage('contact')" id="nav-contact" class="px-4 py-2.5 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900/60">Contact Us</button>
                 </nav>
 
-                <!-- Mobile Menu Button (Hamburger) -->
+                <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button onclick="toggleMobileMenu()" class="text-slate-200 focus:outline-none text-2xl p-2 bg-slate-900 rounded-xl border border-slate-800">
+                    <button onclick="toggleMobileMenu()" class="text-slate-200 focus:outline-none text-xl p-2.5 bg-slate-900/80 rounded-xl border border-slate-800">
                         <i class="fa-solid fa-bars" id="menu-icon"></i>
                     </button>
                 </div>
@@ -88,14 +92,14 @@
         </div>
 
         <!-- Mobile Dropdown Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass-header border-t border-slate-800 px-4 pt-3 pb-5 space-y-2">
-            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Home</button>
-            <button onclick="switchPage('services'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Services</button>
-            <button onclick="switchPage('promos'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Promo Codes</button>
-            <button onclick="switchPage('registers'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Register Links</button>
-            <button onclick="switchPage('videos'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Videos</button>
-            <button onclick="switchPage('groups'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Groups</button>
-            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Contact Us</button>
+        <div id="mobile-menu" class="hidden md:hidden glass-nav border-t border-slate-800/80 px-4 pt-3 pb-5 space-y-2">
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left px-4 py-3 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Home</button>
+            <button onclick="switchPage('services'); toggleMobileMenu();" class="block w-full text-left px-4 py-3 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Services</button>
+            <button onclick="switchPage('promos'); toggleMobileMenu();" class="block w-full text-left px-4 py-3 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Promo Codes</button>
+            <button onclick="switchPage('registers'); toggleMobileMenu();" class="block w-full text-left px-4 py-3 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Register Links</button>
+            <button onclick="switchPage('videos'); toggleMobileMenu();" class="block w-full text-left px-4 py-3 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Videos</button>
+            <button onclick="switchPage('groups'); toggleMobileMenu();" class="block w-full text-left px-4 py-3 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Groups</button>
+            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left px-4 py-3 rounded-xl font-medium text-slate-200 hover:bg-slate-800/80">Contact Us</button>
         </div>
     </header>
 
@@ -106,43 +110,49 @@
         <div class="max-w-7xl mx-auto">
             
             <!-- Hero Banner -->
-            <div class="text-center py-20 glass-card rounded-3xl shadow-2xl px-6 mb-16 relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-transparent to-teal-500/5 pointer-events-none"></div>
-                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Official 24/7 Support & Partner Portal</span>
-                <h1 class="text-4xl md:text-6xl font-black mt-6 mb-6 leading-tight">Welcome to Prakash Academy <br><span class="text-emerald-400">Sri Lanka</span></h1>
-                <p class="text-slate-300 max-w-3xl mx-auto mb-8 text-base md:text-lg leading-relaxed">Your ultimate, trusted hub for international online betting platform assistance, verified registration gateways, exclusive promo codes, and dedicated round-the-clock technical guidance.</p>
-                <div class="flex justify-center space-x-4">
-                    <button onclick="switchPage('registers')" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold px-8 py-3.5 rounded-xl shadow-lg shadow-emerald-500/20 transition-all hover:scale-105 text-sm">Access Register Links</button>
-                    <button onclick="switchPage('services')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-8 py-3.5 rounded-xl border border-slate-700 transition-all hover:scale-105 text-sm">Explore Our Services</button>
+            <div class="text-center py-24 glass-panel rounded-3xl shadow-2xl px-6 mb-16 relative overflow-hidden border border-emerald-500/20">
+                <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-transparent to-teal-500/10 pointer-events-none"></div>
+                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider inline-flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Official 24/7 Support & Partner Portal
+                </span>
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-black mt-6 mb-6 leading-tight tracking-tight">Welcome to Prakash Academy <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">Sri Lanka</span></h1>
+                <p class="text-slate-300 max-w-3xl mx-auto mb-10 text-base md:text-lg leading-relaxed font-normal">Your ultimate, trusted hub for international online betting platform assistance, verified registration gateways, exclusive promo codes, and dedicated round-the-clock technical guidance.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button onclick="switchPage('registers')" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold px-8 py-4 rounded-2xl shadow-xl shadow-emerald-500/20 transition-all hover:scale-105 text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-link"></i> Access Register Links
+                    </button>
+                    <button onclick="switchPage('promos')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-8 py-4 rounded-2xl border border-slate-700 transition-all hover:scale-105 text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-ticket"></i> View Promo Codes
+                    </button>
                 </div>
             </div>
 
-            <!-- Detailed Information About Betting Services & 24/7 Assistance -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center glass-card p-8 md:p-12 rounded-3xl">
+            <!-- Detailed Information Box -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center glass-panel p-8 md:p-12 rounded-3xl">
                 <div>
                     <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-6">Expert Guidance for Online Betting Platforms</h2>
                     <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-4">Navigating international betting sites, digital sportsbooks, and online entertainment networks requires absolute security, accurate account configuration, and verified pathways. At Prakash Academy Sri Lanka, we specialize in bridging users with secure, certified top-tier betting environments.</p>
                     <p class="text-slate-300 text-sm md:text-base leading-relaxed mb-6">Whether you are setting up a new profile, trying to understand platform verification guidelines, or looking to maximize your experience with official promotional codes, our portal guarantees a streamlined and protected journey.</p>
                     
                     <ul class="space-y-3 text-slate-200 text-sm font-medium">
-                        <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-3"></i> 100% Verified and Secure Registration Gateways</li>
-                        <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-3"></i> Exclusive Partner Promo Codes for Maximum Benefits</li>
-                        <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-3"></i> Direct Support via Telegram and WhatsApp Communities</li>
+                        <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-3 text-base"></i> 100% Verified and Secure Registration Gateways</li>
+                        <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-3 text-base"></i> Exclusive Partner Promo Codes for Maximum Benefits</li>
+                        <li class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-400 mr-3 text-base"></i> Direct Support via Telegram and WhatsApp Communities</li>
                     </ul>
                 </div>
                 
-                <div class="bg-slate-950/80 p-8 rounded-2xl border border-slate-800">
+                <div class="bg-slate-950/90 p-8 rounded-2xl border border-slate-800/80 shadow-xl">
                     <div class="flex items-center space-x-3 mb-6">
-                        <div class="bg-emerald-500/10 text-emerald-400 p-3 rounded-xl text-xl">
+                        <div class="bg-emerald-500/10 text-emerald-400 p-3.5 rounded-2xl text-xl border border-emerald-500/20">
                             <i class="fa-solid fa-headset"></i>
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-white">24/7 Dedicated Support</h3>
-                            <p class="text-xs text-emerald-400">Round-the-clock assistance available</p>
+                            <p class="text-xs text-emerald-400 font-medium">Round-the-clock assistance available</p>
                         </div>
                     </div>
                     <p class="text-slate-400 text-xs md:text-sm leading-relaxed mb-6">We understand that account queries, technical glitches, or configuration issues can occur at any time. That is why **Prakash Academy Sri Lanka provides non-stop 24-hour service**. Our professional support team operates 7 days a week, ensuring you receive instant troubleshooting, step-by-step guidance, and reliable answers whenever you need them.</p>
-                    <button onclick="switchPage('contact')" class="w-full bg-slate-900 hover:bg-slate-800 text-emerald-400 font-bold py-3 rounded-xl border border-slate-700 transition-all hover:border-emerald-500/50 text-sm text-center block">Contact Support Team Now</button>
+                    <button onclick="switchPage('contact')" class="w-full bg-slate-900 hover:bg-slate-800 text-emerald-400 font-bold py-3.5 rounded-xl border border-slate-700 transition-all hover:border-emerald-500/50 text-sm text-center block">Contact Support Team Now</button>
                 </div>
             </div>
 
@@ -152,26 +162,26 @@
     <!-- 2. SERVICES PAGE -->
     <section id="page-services" class="page-section py-20 px-4 max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-16">
-            <h2 class="text-3xl font-extrabold text-white">Our Professional Services</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white">Our Professional Services</h2>
             <p class="text-slate-400 mt-2 text-sm">Comprehensive platform assistance and digital solutions tailored for you</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass-card p-8 rounded-2xl transition-all hover:border-emerald-500/40">
-                <div class="bg-emerald-500/10 text-emerald-400 w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-2xl">
+            <div class="site-card p-8 rounded-3xl">
+                <div class="bg-emerald-500/10 text-emerald-400 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl border border-emerald-500/20">
                     <i class="fa-solid fa-shield-halved"></i>
                 </div>
                 <h3 class="font-bold text-xl text-white mb-2">Platform Setup Guidance</h3>
                 <p class="text-slate-400 text-sm leading-relaxed">Expert assistance in setting up, securing, and managing your betting platform accounts safely.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl transition-all hover:border-emerald-500/40">
-                <div class="bg-emerald-500/10 text-emerald-400 w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-2xl">
+            <div class="site-card p-8 rounded-3xl">
+                <div class="bg-emerald-500/10 text-emerald-400 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl border border-emerald-500/20">
                     <i class="fa-solid fa-link"></i>
                 </div>
                 <h3 class="font-bold text-xl text-white mb-2">Verified Access Links</h3>
                 <p class="text-slate-400 text-sm leading-relaxed">Providing authentic, secure, and uninterrupted mirror links for trusted betting networks.</p>
             </div>
-            <div class="glass-card p-8 rounded-2xl transition-all hover:border-emerald-500/40">
-                <div class="bg-emerald-500/10 text-emerald-400 w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-2xl">
+            <div class="site-card p-8 rounded-3xl">
+                <div class="bg-emerald-500/10 text-emerald-400 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-2xl border border-emerald-500/20">
                     <i class="fa-solid fa-headset"></i>
                 </div>
                 <h3 class="font-bold text-xl text-white mb-2">24/7 Expert Support</h3>
@@ -183,82 +193,208 @@
     <!-- 3. PROMO CODES PAGE -->
     <section id="page-promos" class="page-section py-20 px-4 max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-16">
-            <h2 class="text-3xl font-extrabold text-white">Active Promo Codes</h2>
-            <p class="text-slate-400 mt-2 text-sm">Utilize these official partner codes during registration for bonus advantages</p>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white">Official Partner Promo Codes</h2>
+            <p class="text-slate-400 mt-2 text-sm">Copy your required promo code with a single click and use it during registration</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div class="glass-card p-8 rounded-3xl border border-emerald-500/30 flex justify-between items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            
+            <!-- 1xbet -->
+            <div class="site-card p-6 rounded-3xl flex flex-col justify-between">
                 <div>
-                    <span class="text-xs text-emerald-400 font-bold uppercase tracking-wider">Partner Promo Code</span>
-                    <h3 class="text-2xl font-black text-white mt-1">PRAKASH2026</h3>
-                    <p class="text-xs text-slate-400 mt-1">Max reward activation on signup</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase tracking-wider">1xbet</span>
+                        <i class="fa-solid fa-shield-check text-emerald-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-xs text-slate-400 font-medium">Official Promo Code</h3>
+                    <div class="text-2xl font-black text-white tracking-wider mt-1 mb-2 font-mono">SADUNIKA</div>
                 </div>
-                <button onclick="alert('Promo code copied successfully!')" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-5 py-3 rounded-xl text-xs transition-all shadow hover:scale-105">Copy Code</button>
+                <button onclick="copyCode('SADUNIKA', this)" class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-copy"></i> Copy Code
+                </button>
             </div>
-            <div class="glass-card p-8 rounded-3xl border border-emerald-500/30 flex justify-between items-center">
+
+            <!-- 888Starz -->
+            <div class="site-card p-6 rounded-3xl flex flex-col justify-between">
                 <div>
-                    <span class="text-xs text-emerald-400 font-bold uppercase tracking-wider">VIP Special Code</span>
-                    <h3 class="text-2xl font-black text-white mt-1">LANKAVIP</h3>
-                    <p class="text-xs text-slate-400 mt-1">Exclusive privileged account status</p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 uppercase tracking-wider">888Starz</span>
+                        <i class="fa-solid fa-shield-check text-emerald-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-xs text-slate-400 font-medium">Official Promo Code</h3>
+                    <div class="text-2xl font-black text-white tracking-wider mt-1 mb-2 font-mono">LAKSHAN4</div>
                 </div>
-                <button onclick="alert('Promo code copied successfully!')" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-5 py-3 rounded-xl text-xs transition-all shadow hover:scale-105">Copy Code</button>
+                <button onclick="copyCode('LAKSHAN4', this)" class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-copy"></i> Copy Code
+                </button>
             </div>
+
+            <!-- Melbet -->
+            <div class="site-card p-6 rounded-3xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20 uppercase tracking-wider">Melbet</span>
+                        <i class="fa-solid fa-shield-check text-emerald-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-xs text-slate-400 font-medium">Official Promo Code</h3>
+                    <div class="text-2xl font-black text-white tracking-wider mt-1 mb-2 font-mono">MADUWA</div>
+                </div>
+                <button onclick="copyCode('MADUWA', this)" class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-copy"></i> Copy Code
+                </button>
+            </div>
+
+            <!-- Coldbet -->
+            <div class="site-card p-6 rounded-3xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 uppercase tracking-wider">Coldbet</span>
+                        <i class="fa-solid fa-shield-check text-emerald-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-xs text-slate-400 font-medium">Official Promo Code</h3>
+                    <div class="text-2xl font-black text-white tracking-wider mt-1 mb-2 font-mono">MADUWA</div>
+                </div>
+                <button onclick="copyCode('MADUWA', this)" class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-copy"></i> Copy Code
+                </button>
+            </div>
+
+            <!-- Dbbet -->
+            <div class="site-card p-6 rounded-3xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 uppercase tracking-wider">Dbbet</span>
+                        <i class="fa-solid fa-shield-check text-emerald-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-xs text-slate-400 font-medium">Official Promo Code</h3>
+                    <div class="text-2xl font-black text-white tracking-wider mt-1 mb-2 font-mono">PRAKASH4</div>
+                </div>
+                <button onclick="copyCode('PRAKASH4', this)" class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-copy"></i> Copy Code
+                </button>
+            </div>
+
+            <!-- Paripulse -->
+            <div class="site-card p-6 rounded-3xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 uppercase tracking-wider">Paripulse</span>
+                        <i class="fa-solid fa-shield-check text-emerald-400 text-lg"></i>
+                    </div>
+                    <h3 class="text-xs text-slate-400 font-medium">Official Promo Code</h3>
+                    <div class="text-2xl font-black text-white tracking-wider mt-1 mb-2 font-mono">99WIN</div>
+                </div>
+                <button onclick="copyCode('99WIN', this)" class="w-full mt-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-copy"></i> Copy Code
+                </button>
+            </div>
+
         </div>
     </section>
 
     <!-- 4. REGISTER LINKS PAGE -->
     <section id="page-registers" class="page-section py-20 px-4 max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-16">
-            <h2 class="text-3xl font-extrabold text-white">Official Register Links</h2>
-            <p class="text-slate-400 mt-2 text-sm">Access verified betting platform registration links securely</p>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white">Official Register Links</h2>
+            <p class="text-slate-400 mt-2 text-sm">Access verified partner platform registration gateways securely</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div class="glass-card p-8 rounded-3xl text-center">
-                <div class="bg-emerald-500/10 text-emerald-400 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
-                    <i class="fa-solid fa-link"></i>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            
+            <!-- 1xbet Link -->
+            <div class="site-card p-6 rounded-3xl text-center flex flex-col justify-between">
+                <div>
+                    <div class="bg-blue-500/10 text-blue-400 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl border border-blue-500/20">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-1">1xbet Registration</h3>
+                    <p class="text-xs text-slate-400 mb-6">Secure official signup gateway</p>
                 </div>
-                <h3 class="font-bold text-lg text-white mb-2">Primary Registration Link</h3>
-                <p class="text-xs text-slate-400 mb-6">Standard safe signup gateway for new accounts.</p>
-                <a href="#" onclick="alert('Redirecting to primary link...')" class="block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition-all">Open Link</a>
+                <a href="#" onclick="alert('Redirecting to 1xbet secure registration link...')" class="block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20">Open Register Link</a>
             </div>
-            <div class="glass-card p-8 rounded-3xl text-center">
-                <div class="bg-emerald-500/10 text-emerald-400 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
-                    <i class="fa-solid fa-star"></i>
+
+            <!-- 888starz Link -->
+            <div class="site-card p-6 rounded-3xl text-center flex flex-col justify-between">
+                <div>
+                    <div class="bg-amber-500/10 text-amber-400 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl border border-amber-500/20">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-1">888starz Registration</h3>
+                    <p class="text-xs text-slate-400 mb-6">Secure official signup gateway</p>
                 </div>
-                <h3 class="font-bold text-lg text-white mb-2">VIP Registration Link</h3>
-                <p class="text-xs text-slate-400 mb-6">Advanced access link with integrated reward perks.</p>
-                <a href="#" onclick="alert('Redirecting to VIP link...')" class="block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition-all">Open Link</a>
+                <a href="#" onclick="alert('Redirecting to 888starz secure registration link...')" class="block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20">Open Register Link</a>
             </div>
-            <div class="glass-card p-8 rounded-3xl text-center">
-                <div class="bg-emerald-500/10 text-emerald-400 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
-                    <i class="fa-solid fa-bolt"></i>
+
+            <!-- melbet Link -->
+            <div class="site-card p-6 rounded-3xl text-center flex flex-col justify-between">
+                <div>
+                    <div class="bg-red-500/10 text-red-400 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl border border-red-500/20">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-1">Melbet Registration</h3>
+                    <p class="text-xs text-slate-400 mb-6">Secure official signup gateway</p>
                 </div>
-                <h3 class="font-bold text-lg text-white mb-2">Mirror Gateway Link</h3>
-                <p class="text-xs text-slate-400 mb-6">Fast alternate connection link for seamless access.</p>
-                <a href="#" onclick="alert('Redirecting to mirror link...')" class="block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition-all">Open Link</a>
+                <a href="#" onclick="alert('Redirecting to Melbet secure registration link...')" class="block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20">Open Register Link</a>
             </div>
+
+            <!-- coldbet Link -->
+            <div class="site-card p-6 rounded-3xl text-center flex flex-col justify-between">
+                <div>
+                    <div class="bg-cyan-500/10 text-cyan-400 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl border border-cyan-500/20">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-1">Coldbet Registration</h3>
+                    <p class="text-xs text-slate-400 mb-6">Secure official signup gateway</p>
+                </div>
+                <a href="#" onclick="alert('Redirecting to Coldbet secure registration link...')" class="block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20">Open Register Link</a>
+            </div>
+
+            <!-- dbbet Link -->
+            <div class="site-card p-6 rounded-3xl text-center flex flex-col justify-between">
+                <div>
+                    <div class="bg-purple-500/10 text-purple-400 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl border border-purple-500/20">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-1">Dbbet Registration</h3>
+                    <p class="text-xs text-slate-400 mb-6">Secure official signup gateway</p>
+                </div>
+                <a href="#" onclick="alert('Redirecting to Dbbet secure registration link...')" class="block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20">Open Register Link</a>
+            </div>
+
+            <!-- paripulse Link -->
+            <div class="site-card p-6 rounded-3xl text-center flex flex-col justify-between">
+                <div>
+                    <div class="bg-indigo-500/10 text-indigo-400 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl border border-indigo-500/20">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-white mb-1">Paripulse Registration</h3>
+                    <p class="text-xs text-slate-400 mb-6">Secure official signup gateway</p>
+                </div>
+                <a href="#" onclick="alert('Redirecting to Paripulse secure registration link...')" class="block bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition-all shadow-lg shadow-emerald-500/20">Open Register Link</a>
+            </div>
+
         </div>
     </section>
 
     <!-- 5. VIDEOS PAGE -->
     <section id="page-videos" class="page-section py-20 px-4 max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-16">
-            <h2 class="text-3xl font-extrabold text-white">Instructional Videos</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white">Instructional Videos</h2>
             <p class="text-slate-400 mt-2 text-sm">Watch our video walkthroughs for platform guidance</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div class="glass-card rounded-3xl overflow-hidden">
-                <div class="bg-slate-900 h-48 flex items-center justify-center text-slate-500">
-                    <i class="fa-solid fa-play text-5xl text-emerald-400"></i>
+            <div class="site-card rounded-3xl overflow-hidden">
+                <div class="bg-slate-900 h-48 flex items-center justify-center text-slate-500 relative group cursor-pointer">
+                    <div class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <i class="fa-solid fa-play text-4xl text-emerald-400 bg-slate-950/80 p-5 rounded-full shadow-lg"></i>
                 </div>
                 <div class="p-6">
                     <h3 class="font-bold text-base text-white mb-1">How to Register and Apply Promo Codes</h3>
                     <p class="text-xs text-slate-400">Complete step-by-step tutorial on profile creation.</p>
                 </div>
             </div>
-            <div class="glass-card rounded-3xl overflow-hidden">
-                <div class="bg-slate-900 h-48 flex items-center justify-center text-slate-500">
-                    <i class="fa-solid fa-play text-5xl text-emerald-400"></i>
+            <div class="site-card rounded-3xl overflow-hidden">
+                <div class="bg-slate-900 h-48 flex items-center justify-center text-slate-500 relative group cursor-pointer">
+                    <div class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <i class="fa-solid fa-play text-4xl text-emerald-400 bg-slate-950/80 p-5 rounded-full shadow-lg"></i>
                 </div>
                 <div class="p-6">
                     <h3 class="font-bold text-base text-white mb-1">Platform Navigation and Support Overview</h3>
@@ -271,13 +407,13 @@
     <!-- 6. GROUPS PAGE -->
     <section id="page-groups" class="page-section py-20 px-4 max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-16">
-            <h2 class="text-3xl font-extrabold text-white">Community Groups</h2>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white">Community Groups</h2>
             <p class="text-slate-400 mt-2 text-sm">Stay updated through our official community networks</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            <div class="glass-card p-8 rounded-3xl flex items-center justify-between">
+            <div class="site-card p-8 rounded-3xl flex items-center justify-between">
                 <div class="flex items-center space-x-4">
-                    <div class="bg-sky-500/10 text-sky-400 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl">
+                    <div class="bg-sky-500/10 text-sky-400 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl border border-sky-500/20">
                         <i class="fa-brands fa-telegram"></i>
                     </div>
                     <div>
@@ -285,11 +421,11 @@
                         <p class="text-xs text-slate-400">Instant notices & updates</p>
                     </div>
                 </div>
-                <a href="#" onclick="alert('Joining Telegram group...')" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-sm transition-all">Join Group</a>
+                <a href="#" onclick="alert('Joining Telegram group...')" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-sm transition-all shadow-lg shadow-sky-500/25">Join Group</a>
             </div>
-            <div class="glass-card p-8 rounded-3xl flex items-center justify-between">
+            <div class="site-card p-8 rounded-3xl flex items-center justify-between">
                 <div class="flex items-center space-x-4">
-                    <div class="bg-emerald-500/10 text-emerald-400 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl">
+                    <div class="bg-emerald-500/10 text-emerald-400 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl border border-emerald-500/20">
                         <i class="fa-brands fa-whatsapp"></i>
                     </div>
                     <div>
@@ -297,7 +433,7 @@
                         <p class="text-xs text-slate-400">Direct chat assistance</p>
                     </div>
                 </div>
-                <a href="#" onclick="alert('Joining WhatsApp group...')" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-sm transition-all">Join Group</a>
+                <a href="#" onclick="alert('Joining WhatsApp group...')" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-sm transition-all shadow-lg shadow-emerald-500/25">Join Group</a>
             </div>
         </div>
     </section>
@@ -306,40 +442,40 @@
     <section id="page-contact" class="page-section py-20 px-4 max-w-7xl mx-auto relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div>
-                <h2 class="text-3xl font-extrabold text-white mb-4">Contact Our 24/7 Team</h2>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Contact Our 24/7 Team</h2>
                 <p class="text-slate-400 mb-8 text-sm leading-relaxed">Have inquiries or require immediate technical assistance regarding betting platforms or registration links? Reach out to our 24-hour support crew anytime.</p>
                 <div class="space-y-4 text-slate-300 text-sm">
-                    <p class="flex items-center"><i class="fa-solid fa-envelope text-emerald-400 mr-4 w-6"></i> support@prakashacademy.lk</p>
-                    <p class="flex items-center"><i class="fa-solid fa-phone text-emerald-400 mr-4 w-6"></i> +94 11 234 5678 / +94 77 123 4567</p>
-                    <p class="flex items-center"><i class="fa-solid fa-location-dot text-emerald-400 mr-4 w-6"></i> Colombo 07, Sri Lanka</p>
+                    <p class="flex items-center"><i class="fa-solid fa-envelope text-emerald-400 mr-4 w-6 text-base"></i> support@prakashacademy.lk</p>
+                    <p class="flex items-center"><i class="fa-solid fa-phone text-emerald-400 mr-4 w-6 text-base"></i> +94 11 234 5678 / +94 77 123 4567</p>
+                    <p class="flex items-center"><i class="fa-solid fa-location-dot text-emerald-400 mr-4 w-6 text-base"></i> Colombo 07, Sri Lanka</p>
                 </div>
             </div>
-            <div class="glass-card p-8 rounded-3xl">
+            <div class="glass-panel p-8 rounded-3xl shadow-xl border border-slate-800">
                 <form onsubmit="event.preventDefault(); alert('Your message has been sent successfully! Our 24/7 team will respond soon.');">
                     <div class="mb-4">
                         <label class="block text-slate-300 text-xs font-semibold mb-2">Your Name</label>
-                        <input type="text" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-emerald-500 text-sm">
+                        <input type="text" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-emerald-500 text-sm transition-all">
                     </div>
                     <div class="mb-4">
                         <label class="block text-slate-300 text-xs font-semibold mb-2">Email or Phone</label>
-                        <input type="text" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-emerald-500 text-sm">
+                        <input type="text" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-emerald-500 text-sm transition-all">
                     </div>
                     <div class="mb-4">
                         <label class="block text-slate-300 text-xs font-semibold mb-2">Message</label>
-                        <textarea rows="4" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-emerald-500 text-sm"></textarea>
+                        <textarea rows="4" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none focus:border-emerald-500 text-sm transition-all"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl transition-all shadow text-sm">Send Message</button>
+                    <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-500/20 text-sm">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="glass-header border-t border-slate-800 py-10 mt-20 text-center text-xs text-slate-500 relative z-10">
+    <footer class="glass-nav border-t border-slate-800/80 py-10 mt-20 text-center text-xs text-slate-500 relative z-10">
         <p>&copy; 2026 Prakash Academy Sri Lanka. All Rights Reserved. 18+ Play Responsibly.</p>
     </footer>
 
-    <!-- JavaScript for Page Switching & Mobile Menu -->
+    <!-- JavaScript for Page Switching, Mobile Menu & Clipboard -->
     <script>
         function switchPage(pageId) {
             // Hide all pages
@@ -352,13 +488,13 @@
             // Reset desktop navigation styles
             const navButtons = document.querySelectorAll('header nav button');
             navButtons.forEach(btn => {
-                btn.className = "px-4 py-2 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900";
+                btn.className = "px-4 py-2.5 rounded-xl text-slate-300 transition-all hover:text-emerald-400 hover:bg-slate-900/60";
             });
 
             // Highlight current active desktop nav button
             const activeNav = document.getElementById('nav-' + pageId);
             if(activeNav) {
-                activeNav.className = "px-4 py-2 rounded-xl text-emerald-400 font-semibold transition-all bg-emerald-500/10";
+                activeNav.className = "px-4 py-2.5 rounded-xl text-emerald-400 font-semibold transition-all bg-emerald-500/10 border border-emerald-500/20";
             }
 
             // Scroll to top smoothly
@@ -368,6 +504,24 @@
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
+        }
+
+        // Accurate Copy to Clipboard Function
+        function copyCode(codeText, buttonElement) {
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalHTML = buttonElement.innerHTML;
+                buttonElement.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                buttonElement.classList.remove('bg-emerald-500', 'hover:bg-emerald-400');
+                buttonElement.classList.add('bg-teal-600', 'text-white');
+                
+                setTimeout(() => {
+                    buttonElement.innerHTML = originalHTML;
+                    buttonElement.classList.remove('bg-teal-600', 'text-white');
+                    buttonElement.classList.add('bg-emerald-500', 'hover:bg-emerald-400');
+                }, 2000);
+            }).catch(err => {
+                alert('Failed to copy code: ' + err);
+            });
         }
     </script>
 
