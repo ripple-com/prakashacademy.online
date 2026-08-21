@@ -26,7 +26,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030712; color: #f3f4f6; overflow-x: hidden; width: 100%; margin: 0; padding: 0; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030712; color: #f3f4f6; overflow-x: hidden; width: 100%; margin: 0; padding: 0; transition: background-color 0.3s ease, color 0.3s ease; }
+        
+        /* Light Mode Custom Overrides */
+        html.light body { background-color: #f8fafc; color: #0f172a; }
+        html.light .luxury-glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(241, 245, 249, 0.95) 100%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+        }
+        html.light .luxury-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(241, 245, 249, 0.8) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        html.light .text-white { color: #0f172a !important; }
+        html.light .text-slate-300, html.light .text-slate-400 { color: #475569 !important; }
+        html.light .bg-slate-900, html.light .bg-slate-950 { background-color: #ffffff !important; color: #0f172a !important; border-color: rgba(245, 158, 11, 0.3) !important; }
+
         .font-cinzel { font-family: 'Cinzel', serif; }
         .page-section { display: none; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; width: 100%; }
         .page-section.active { display: block; opacity: 1; transform: translateY(0); }
@@ -124,22 +143,52 @@
                     </div>
                     <div>
                         <span class="text-lg sm:text-xl font-black font-cinzel tracking-wider text-white">PRAKASH <span class="text-amber-400">ACADEMY</span></span>
-                        <p class="text-[8px] text-amber-500 font-bold tracking-[0.2em] uppercase">Official VIP Portal</p>
+                        <p class="text-[8px] text-amber-500 font-bold tracking-[0.2em] uppercase" data-i18n="portal_title">Official VIP Portal</p>
                     </div>
                 </div>
 
-                <nav class="hidden lg:flex items-center space-x-1.5 p-1.5 rounded-2xl bg-slate-950/60 border border-amber-500/20 shadow-inner">
-                    <button onclick="switchPage('home')" id="nav-home" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-amber-400 bg-amber-500/10 transition-all">Home</button>
-                    <button onclick="switchPage('services')" id="nav-services" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all">Services</button>
-                    <button onclick="switchPage('crypto')" id="nav-crypto" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all">Crypto & Forex</button>
-                    <button onclick="switchPage('promos')" id="nav-promos" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all">Promo Codes</button>
-                    <button onclick="switchPage('registers')" id="nav-registers" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all">Register Links</button>
-                    <button onclick="switchPage('videos')" id="nav-videos" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all">Videos</button>
-                    <button onclick="switchPage('groups')" id="nav-groups" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all">Groups</button>
-                    <button onclick="switchPage('contact')" id="nav-contact" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all">Contact Us</button>
-                </nav>
+                <!-- Navigation Links & Right Controls (Theme & Language) -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <nav class="flex items-center space-x-1.5 p-1.5 rounded-2xl bg-slate-950/60 border border-amber-500/20 shadow-inner">
+                        <button onclick="switchPage('home')" id="nav-home" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-amber-400 bg-amber-500/10 transition-all" data-i18n="nav_home">Home</button>
+                        <button onclick="switchPage('services')" id="nav-services" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all" data-i18n="nav_services">Services</button>
+                        <button onclick="switchPage('crypto')" id="nav-crypto" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all" data-i18n="nav_crypto">Crypto & Forex</button>
+                        <button onclick="switchPage('promos')" id="nav-promos" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all" data-i18n="nav_promos">Promo Codes</button>
+                        <button onclick="switchPage('registers')" id="nav-registers" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all" data-i18n="nav_registers">Register Links</button>
+                        <button onclick="switchPage('videos')" id="nav-videos" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all" data-i18n="nav_videos">Videos</button>
+                        <button onclick="switchPage('groups')" id="nav-groups" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all" data-i18n="nav_groups">Groups</button>
+                        <button onclick="switchPage('contact')" id="nav-contact" class="px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-900 transition-all" data-i18n="nav_contact">Contact Us</button>
+                    </nav>
 
-                <div class="lg:hidden">
+                    <!-- Theme Toggle Button -->
+                    <button onclick="toggleTheme()" id="theme-toggle-btn" title="Toggle Light/Dark Mode" class="flex items-center justify-center w-9 h-9 bg-slate-950/60 border border-amber-500/20 rounded-2xl text-amber-400 hover:bg-amber-500/10 transition-all">
+                        <i id="theme-icon" class="fa-solid fa-moon text-xs"></i>
+                    </button>
+
+                    <!-- Language Selector Dropdown -->
+                    <div class="flex items-center bg-slate-950/60 border border-amber-500/20 rounded-2xl px-3 py-1.5">
+                        <i class="fa-solid fa-globe text-amber-400 text-xs mr-2"></i>
+                        <select id="language-select" onchange="changeLanguage(this.value)" class="bg-transparent text-xs font-bold text-amber-400 focus:outline-none cursor-pointer">
+                            <option value="en" class="bg-slate-900 text-white">English</option>
+                            <option value="si" class="bg-slate-900 text-white">සිංහල</option>
+                            <option value="ta" class="bg-slate-900 text-white">தமிழ்</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="lg:hidden flex items-center space-x-2">
+                    <!-- Mobile Theme Toggle Button -->
+                    <button onclick="toggleTheme()" class="flex items-center justify-center w-9 h-9 bg-slate-900 border border-amber-500/30 rounded-xl text-amber-400">
+                        <i id="mobile-theme-icon" class="fa-solid fa-moon text-xs"></i>
+                    </button>
+                    <!-- Mobile Language Selector -->
+                    <div class="flex items-center bg-slate-900 border border-amber-500/30 rounded-xl px-2 py-1.5">
+                        <select id="mobile-language-select" onchange="changeLanguage(this.value)" class="bg-transparent text-xs font-bold text-amber-400 focus:outline-none">
+                            <option value="en" class="bg-slate-900 text-white">EN</option>
+                            <option value="si" class="bg-slate-900 text-white">SI</option>
+                            <option value="ta" class="bg-slate-900 text-white">TA</option>
+                        </select>
+                    </div>
                     <button onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-900 border border-amber-500/30 text-amber-400 text-base hover:bg-slate-800 transition-colors">
                         <i class="fa-solid fa-bars"></i>
                     </button>
@@ -149,14 +198,14 @@
         </div>
 
         <div id="mobile-menu" class="hidden lg:hidden luxury-glass border-t border-amber-500/20 px-4 py-4 space-y-2 w-full">
-            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all">Home</button>
-            <button onclick="switchPage('services'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all">Services</button>
-            <button onclick="switchPage('crypto'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all">Crypto & Forex Trading</button>
-            <button onclick="switchPage('promos'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all">Promo Codes</button>
-            <button onclick="switchPage('registers'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all">Register Links</button>
-            <button onclick="switchPage('videos'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all">Videos</button>
-            <button onclick="switchPage('groups'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all">Groups</button>
-            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all">Contact Us</button>
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all" data-i18n="nav_home">Home</button>
+            <button onclick="switchPage('services'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all" data-i18n="nav_services">Services</button>
+            <button onclick="switchPage('crypto'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all" data-i18n="nav_crypto">Crypto & Forex Trading</button>
+            <button onclick="switchPage('promos'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all" data-i18n="nav_promos">Promo Codes</button>
+            <button onclick="switchPage('registers'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all" data-i18n="nav_registers">Register Links</button>
+            <button onclick="switchPage('videos'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all" data-i18n="nav_videos">Videos</button>
+            <button onclick="switchPage('groups'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all" data-i18n="nav_groups">Groups</button>
+            <button onclick="switchPage('contact'); toggleMobileMenu();" class="block w-full text-left py-2.5 px-4 rounded-xl font-bold text-xs text-slate-200 hover:bg-amber-500/10 hover:text-amber-400 transition-all" data-i18n="nav_contact">Contact Us</button>
         </div>
     </header>
 
@@ -171,30 +220,30 @@
             </div>
 
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-bold uppercase tracking-widest mb-4 shadow-lg">
-                <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span> Prakash Academy Premium Hub
+                <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span> <span data-i18n="home_badge">Prakash Academy Premium Hub</span>
             </div>
             <h1 class="text-3xl sm:text-5xl font-black font-cinzel tracking-tight mb-4 leading-tight">
-                Welcome to <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500">Prakash Academy</span>
+                <span data-i18n="home_welcome">Welcome to</span> <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500">Prakash Academy</span>
             </h1>
-            <p class="text-slate-300 max-w-xl mx-auto text-xs sm:text-sm font-normal mb-8 leading-relaxed">
+            <p class="text-slate-300 max-w-xl mx-auto text-xs sm:text-sm font-normal mb-8 leading-relaxed" data-i18n="home_desc">
                 Your premier, trusted destination for verified international platform gateways, exclusive VIP bonus promo codes, and dedicated 24/7 technical customer assistance.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-3">
                 <button onclick="switchPage('crypto')" class="gold-button font-extrabold px-6 py-3.5 rounded-xl text-xs flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-chart-candlestick"></i> Crypto & Forex Trading
+                    <i class="fa-solid fa-chart-candlestick"></i> <span data-i18n="btn_crypto_forex">Crypto & Forex Trading</span>
                 </button>
                 <button onclick="switchPage('registers')" class="bg-slate-900/90 hover:bg-slate-800 text-amber-400 font-bold px-6 py-3.5 rounded-xl border border-amber-500/30 text-xs transition-all flex items-center justify-center gap-2 shadow-lg">
-                    <i class="fa-solid fa-link"></i> Open Register Links
+                    <i class="fa-solid fa-link"></i> <span data-i18n="btn_open_registers">Open Register Links</span>
                 </button>
                 <button onclick="switchPage('promos')" class="bg-slate-900/90 hover:bg-slate-800 text-amber-400 font-bold px-6 py-3.5 rounded-xl border border-amber-500/30 text-xs transition-all flex items-center justify-center gap-2 shadow-lg">
-                    <i class="fa-solid fa-ticket"></i> View Promo Codes
+                    <i class="fa-solid fa-ticket"></i> <span data-i18n="btn_view_promos">View Promo Codes</span>
                 </button>
             </div>
         </div>
 
         <div class="text-center mb-6">
-            <h3 class="text-lg sm:text-xl font-black font-cinzel text-amber-400 tracking-wider">OUR EXCLUSIVE VIP SERVICES</h3>
-            <p class="text-[10px] text-slate-400 mt-1">Scrolls automatically / Hover to pause</p>
+            <h3 class="text-lg sm:text-xl font-black font-cinzel text-amber-400 tracking-wider" data-i18n="services_heading">OUR EXCLUSIVE VIP SERVICES</h3>
+            <p class="text-[10px] text-slate-400 mt-1" data-i18n="ticker_sub">Scrolls automatically / Hover to pause</p>
         </div>
 
         <div class="ticker-container py-2 mb-12">
@@ -203,36 +252,36 @@
                     <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-3 border border-amber-500/20">
                         <i class="fa-solid fa-chart-candlestick"></i>
                     </div>
-                    <h4 class="text-sm font-bold text-white mb-1.5 font-cinzel">Crypto & Forex Trading</h4>
-                    <p class="text-[11px] text-slate-400 leading-relaxed">Master professional digital asset trading with structured expert guidance and live sessions.</p>
+                    <h4 class="text-sm font-bold text-white mb-1.5 font-cinzel" data-i18n="srv_1_title">Crypto & Forex Trading</h4>
+                    <p class="text-[11px] text-slate-400 leading-relaxed" data-i18n="srv_1_desc">Master professional digital asset trading with structured expert guidance and live sessions.</p>
                 </div>
                 <div class="luxury-card p-5 rounded-2xl w-72 flex-shrink-0">
                     <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-3 border border-amber-500/20">
                         <i class="fa-solid fa-headset"></i>
                     </div>
-                    <h4 class="text-sm font-bold text-white mb-1.5 font-cinzel">24/7 Customer Service</h4>
-                    <p class="text-[11px] text-slate-400 leading-relaxed">Round-the-clock dedicated assistance and live support for all your platform needs.</p>
+                    <h4 class="text-sm font-bold text-white mb-1.5 font-cinzel" data-i18n="srv_2_title">24/7 Customer Service</h4>
+                    <p class="text-[11px] text-slate-400 leading-relaxed" data-i18n="srv_2_desc">Round-the-clock dedicated assistance and live support for all your platform needs.</p>
                 </div>
                 <div class="luxury-card p-5 rounded-2xl w-72 flex-shrink-0">
                     <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-3 border border-amber-500/20">
                         <i class="fa-solid fa-wallet"></i>
                     </div>
-                    <h4 class="text-sm font-bold text-white mb-1.5 font-cinzel">Agent Deposit & Withdrawal Service</h4>
-                    <p class="text-[11px] text-slate-400 leading-relaxed">Fast, trusted, and secure deposit and withdrawal execution via authorized agents.</p>
+                    <h4 class="text-sm font-bold text-white mb-1.5 font-cinzel" data-i18n="srv_3_title">Agent Deposit & Withdrawal Service</h4>
+                    <p class="text-[11px] text-slate-400 leading-relaxed" data-i18n="srv_3_desc">Fast, trusted, and secure deposit and withdrawal execution via authorized agents.</p>
                 </div>
                 <div class="luxury-card p-5 rounded-2xl w-72 flex-shrink-0">
                     <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-3 border border-amber-500/20">
                         <i class="fa-solid fa-user-tie"></i>
                     </div>
-                    <h4 class="text-sm font-bold text-white mb-1.5 font-cinzel">Manager Service</h4>
-                    <p class="text-[11px] text-slate-400 leading-relaxed">Personalized account management guidance and expert administrative consultation.</p>
+                    <h4 class="text-sm font-bold text-white mb-1.5 font-cinzel" data-i18n="srv_4_title">Manager Service</h4>
+                    <p class="text-[11px] text-slate-400 leading-relaxed" data-i18n="srv_4_desc">Personalized account management guidance and expert administrative consultation.</p>
                 </div>
                 <div class="luxury-card p-5 rounded-2xl w-72 flex-shrink-0">
                     <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg mb-3 border border-amber-500/20">
                         <i class="fa-solid fa-chart-line"></i>
                     </div>
-                    <h4 class="text-sm font-bold text-white mb-1.5 font-cinzel">Signal Service</h4>
-                    <p class="text-[11px] text-slate-400 leading-relaxed">Precise tactical signals and analytical insights to boost your operational success.</p>
+                    <h4 class="text-sm font-bold text-white mb-1.5 font-cinzel" data-i18n="srv_5_title">Signal Service</h4>
+                    <p class="text-[11px] text-slate-400 leading-relaxed" data-i18n="srv_5_desc">Precise tactical signals and analytical insights to boost your operational success.</p>
                 </div>
             </div>
         </div>
@@ -241,51 +290,51 @@
     <!-- 2. SERVICES PAGE -->
     <section id="page-services" class="page-section py-10 px-4 max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-10">
-            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white">Our VIP Services</h2>
-            <p class="text-slate-400 text-xs mt-2">Professional digital assistance and guidance tailored for you</p>
+            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white" data-i18n="services_page_title">Our VIP Services</h2>
+            <p class="text-slate-400 text-xs mt-2" data-i18n="services_page_sub">Professional digital assistance and guidance tailored for you</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div class="luxury-card p-6 rounded-2xl cursor-pointer" onclick="switchPage('crypto')">
                 <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4 border border-amber-500/20">
                     <i class="fa-solid fa-chart-candlestick"></i>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">Crypto & Forex Trading Course</h3>
-                <p class="text-slate-400 text-xs leading-relaxed">Complete professional training with live sessions, lifetime VIP signals, and account growth mentorship.</p>
+                <h3 class="text-base font-bold text-white mb-2" data-i18n="srv_1_title">Crypto & Forex Trading Course</h3>
+                <p class="text-slate-400 text-xs leading-relaxed" data-i18n="srv_1_desc">Complete professional training with live sessions, lifetime VIP signals, and account growth mentorship.</p>
             </div>
             <div class="luxury-card p-6 rounded-2xl">
                 <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4 border border-amber-500/20">
                     <i class="fa-solid fa-headset"></i>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">24/7 Customer Service</h3>
-                <p class="text-slate-400 text-xs leading-relaxed">Round-the-clock dedicated assistance and live support for all your platform needs.</p>
+                <h3 class="text-base font-bold text-white mb-2" data-i18n="srv_2_title">24/7 Customer Service</h3>
+                <p class="text-slate-400 text-xs leading-relaxed" data-i18n="srv_2_desc">Round-the-clock dedicated assistance and live support for all your platform needs.</p>
             </div>
             <div class="luxury-card p-6 rounded-2xl">
                 <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4 border border-amber-500/20">
                     <i class="fa-solid fa-wallet"></i>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">Agent Deposit & Withdrawal Service</h3>
-                <p class="text-slate-400 text-xs leading-relaxed">Fast, trusted, and secure deposit and withdrawal execution via authorized agents.</p>
+                <h3 class="text-base font-bold text-white mb-2" data-i18n="srv_3_title">Agent Deposit & Withdrawal Service</h3>
+                <p class="text-slate-400 text-xs leading-relaxed" data-i18n="srv_3_desc">Fast, trusted, and secure deposit and withdrawal execution via authorized agents.</p>
             </div>
             <div class="luxury-card p-6 rounded-2xl">
                 <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4 border border-amber-500/20">
                     <i class="fa-solid fa-user-tie"></i>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">Manager Service</h3>
-                <p class="text-slate-400 text-xs leading-relaxed">Personalized account management guidance and expert administrative consultation.</p>
+                <h3 class="text-base font-bold text-white mb-2" data-i18n="srv_4_title">Manager Service</h3>
+                <p class="text-slate-400 text-xs leading-relaxed" data-i18n="srv_4_desc">Personalized account management guidance and expert administrative consultation.</p>
             </div>
             <div class="luxury-card p-6 rounded-2xl">
                 <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4 border border-amber-500/20">
                     <i class="fa-solid fa-chart-line"></i>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">Signal Service</h3>
-                <p class="text-slate-400 text-xs leading-relaxed">Precise tactical signals and analytical insights to boost your operational success.</p>
+                <h3 class="text-base font-bold text-white mb-2" data-i18n="srv_5_title">Signal Service</h3>
+                <p class="text-slate-400 text-xs leading-relaxed" data-i18n="srv_5_desc">Precise tactical signals and analytical insights to boost your operational success.</p>
             </div>
             <div class="luxury-card p-6 rounded-2xl">
                 <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4 border border-amber-500/20">
                     <i class="fa-solid fa-ticket"></i>
                 </div>
-                <h3 class="text-base font-bold text-white mb-2">Betslip Service</h3>
-                <p class="text-slate-400 text-xs leading-relaxed">Expertly verified betslips and structural game plans across all major platforms.</p>
+                <h3 class="text-base font-bold text-white mb-2" data-i18n="srv_6_title">Betslip Service</h3>
+                <p class="text-slate-400 text-xs leading-relaxed" data-i18n="srv_6_desc">Expertly verified betslips and structural game plans across all major platforms.</p>
             </div>
         </div>
     </section>
@@ -293,42 +342,31 @@
     <!-- CRYPTO & FOREX TRADING PAGE -->
     <section id="page-crypto" class="page-section py-10 px-4 max-w-4xl mx-auto relative z-10">
         <div class="text-center mb-8">
-            <span class="px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-bold uppercase tracking-widest inline-block mb-2">Professional Mentorship</span>
-            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white">Crypto & Forex Trading</h2>
-            <p class="text-slate-400 text-xs mt-1">Master trading from scratch with Prakash Academy</p>
+            <span class="px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-bold uppercase tracking-widest inline-block mb-2" data-i18n="crypto_badge">Professional Mentorship</span>
+            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white" data-i18n="crypto_title">Crypto & Forex Trading</h2>
+            <p class="text-slate-400 text-xs mt-1" data-i18n="crypto_sub">Master trading from scratch with Prakash Academy</p>
         </div>
 
         <div class="luxury-glass p-6 sm:p-8 rounded-[2rem] border border-amber-500/30 space-y-6 mb-8">
             <div class="space-y-2">
                 <h3 class="text-amber-400 font-cinzel font-bold text-sm sm:text-base flex items-center gap-2">
-                    <i class="fa-solid fa-globe"></i> English Overview
+                    <i class="fa-solid fa-globe"></i> <span data-i18n="crypto_box_title">Course Overview</span>
                 </h3>
-                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                <p id="crypto-main-desc" class="text-slate-300 text-xs sm:text-sm leading-relaxed">
                     Through Prakash Academy, you have the opportunity to learn complete cryptocurrency and forex market trading from scratch. You will be taught everything simply and step-by-step from the very beginning, complete with unlimited recordings, over 100 revision sessions per year, live trading sessions to grow child accounts, and advanced training to analyze charts independently, generate your own signals, and reach high profitability levels. Plus, receive weekly $3 gift vouchers during the course! Additionally, get 100% free lifetime VIP signal groups, free market update groups, and lifetime customer service support.
-                </p>
-            </div>
-
-            <div class="border-t border-slate-800"></div>
-
-            <div class="space-y-2">
-                <h3 class="text-amber-400 font-cinzel font-bold text-sm sm:text-base flex items-center gap-2">
-                    <i class="fa-solid fa-language"></i> සිංහල විස්තරය (Sinhala Description)
-                </h3>
-                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    සම්පූර්ණ ක්‍රිප්ටෝ කරන්සි සහ ෆොරෙක්ස් මාර්කට් එකේ ට්‍රේඩින් ඉගෙන ගැනීමට ඔබට ප්‍රකාශ් ඇකඩමි හරහා හැකියාවක් ඇත. සම්පූර්ණ ඉගෙන ගැනීමේදී ඔබට මු සිට සරලව සියල්ල ඉගැන්වන අතර අන්ලිමිටඩ් රෙකෝඩින්ස් ලබා දීම, වසරකට රිවිෂන් සියයකට වඩා ප්‍රමාණයක් ලබා දීම, ලයිව් සෙෂන් ඔස්සේ ලයිව් ට්‍රේඩින් කර ළමා එකවුන්ට් එක අප් කරවීම, තමන්ටම ඇනලයිස් කොට තමන්ටම සිග්නල්ස් හදා ලොකු ප්‍රොෆිට් එකක් ගැනීමේ මට්ටමට ලබා දීම, කෝස් එක අතරතුර සෑම සතියකම ඩොලර්ස් 3 ක ගිෆ්ට් වවුචර් ලබා දීම සිදුකෙරේ. ඒ වගේම සම්පූර්ණයෙන්ම ලයිෆ් ටයිම් සිග්නල් VIP ගෘප් එකක් සහ මාර්කට් අප්ඩේට් ගෘප් එකක් සම්පූර්ණයෙන්ම නොමිලේ ලබා දෙන අතර, ලයිෆ් ටයිම් කස්ටමර් සර්විස් එකක් ද ලබා දෙනු ලැබේ.
                 </p>
             </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <button onclick="showJoinNotice()" class="gold-button font-extrabold px-4 py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-xl">
-                <i class="fa-solid fa-user-plus"></i> Join Course
+                <i class="fa-solid fa-user-plus"></i> <span data-i18n="btn_join_course">Join Course</span>
             </button>
             <button onclick="openLoginModal('live')" class="bg-slate-900/90 hover:bg-slate-800 text-amber-400 font-bold px-4 py-3 rounded-xl border border-amber-500/30 text-xs transition-all flex items-center justify-center gap-2 shadow-lg">
-                <i class="fa-solid fa-video"></i> Live Classes
+                <i class="fa-solid fa-video"></i> <span data-i18n="btn_live_classes">Live Classes</span>
             </button>
             <button onclick="openLoginModal('recordings')" class="bg-slate-900/90 hover:bg-slate-800 text-amber-400 font-bold px-4 py-3 rounded-xl border border-amber-500/30 text-xs transition-all flex items-center justify-center gap-2 shadow-lg">
-                <i class="fa-solid fa-circle-play"></i> Recordings
+                <i class="fa-solid fa-circle-play"></i> <span data-i18n="btn_recordings">Recordings</span>
             </button>
         </div>
     </section>
@@ -336,8 +374,8 @@
     <!-- 3. PROMO CODES PAGE -->
     <section id="page-promos" class="page-section py-10 px-4 max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-10">
-            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white">Official Partner Promo Codes</h2>
-            <p class="text-slate-400 text-xs mt-2">Click to copy your required official promo code instantly</p>
+            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white" data-i18n="promo_page_title">Official Partner Promo Codes</h2>
+            <p class="text-slate-400 text-xs mt-2" data-i18n="promo_page_sub">Click to copy your required official promo code instantly</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between">
@@ -349,11 +387,11 @@
                         </div>
                         <i class="fa-solid fa-shield-check text-amber-400 text-base"></i>
                     </div>
-                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Promo Code</span>
+                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider" data-i18n="promo_label">Promo Code</span>
                     <div class="text-xl font-black text-white font-mono tracking-wider mt-1 mb-2">SADUNIKA</div>
                 </div>
                 <button onclick="copyCode('SADUNIKA', this)" class="w-full mt-3 gold-button font-extrabold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2">
-                    <i class="fa-regular fa-copy"></i> Copy Code
+                    <i class="fa-regular fa-copy"></i> <span data-i18n="btn_copy">Copy Code</span>
                 </button>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between">
@@ -365,11 +403,11 @@
                         </div>
                         <i class="fa-solid fa-shield-check text-amber-400 text-base"></i>
                     </div>
-                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Promo Code</span>
+                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider" data-i18n="promo_label">Promo Code</span>
                     <div class="text-xl font-black text-white font-mono tracking-wider mt-1 mb-2">LAKSHAN4</div>
                 </div>
                 <button onclick="copyCode('LAKSHAN4', this)" class="w-full mt-3 gold-button font-extrabold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2">
-                    <i class="fa-regular fa-copy"></i> Copy Code
+                    <i class="fa-regular fa-copy"></i> <span data-i18n="btn_copy">Copy Code</span>
                 </button>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between">
@@ -381,11 +419,11 @@
                         </div>
                         <i class="fa-solid fa-shield-check text-amber-400 text-base"></i>
                     </div>
-                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Promo Code</span>
+                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider" data-i18n="promo_label">Promo Code</span>
                     <div class="text-xl font-black text-white font-mono tracking-wider mt-1 mb-2">MADUWA</div>
                 </div>
                 <button onclick="copyCode('MADUWA', this)" class="w-full mt-3 gold-button font-extrabold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2">
-                    <i class="fa-regular fa-copy"></i> Copy Code
+                    <i class="fa-regular fa-copy"></i> <span data-i18n="btn_copy">Copy Code</span>
                 </button>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between">
@@ -397,11 +435,11 @@
                         </div>
                         <i class="fa-solid fa-shield-check text-amber-400 text-base"></i>
                     </div>
-                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Promo Code</span>
+                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider" data-i18n="promo_label">Promo Code</span>
                     <div class="text-xl font-black text-white font-mono tracking-wider mt-1 mb-2">MADUWA</div>
                 </div>
                 <button onclick="copyCode('MADUWA', this)" class="w-full mt-3 gold-button font-extrabold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2">
-                    <i class="fa-regular fa-copy"></i> Copy Code
+                    <i class="fa-regular fa-copy"></i> <span data-i18n="btn_copy">Copy Code</span>
                 </button>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between">
@@ -413,11 +451,11 @@
                         </div>
                         <i class="fa-solid fa-shield-check text-amber-400 text-base"></i>
                     </div>
-                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Promo Code</span>
+                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider" data-i18n="promo_label">Promo Code</span>
                     <div class="text-xl font-black text-white font-mono tracking-wider mt-1 mb-2">PRAKASH4</div>
                 </div>
                 <button onclick="copyCode('PRAKASH4', this)" class="w-full mt-3 gold-button font-extrabold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2">
-                    <i class="fa-regular fa-copy"></i> Copy Code
+                    <i class="fa-regular fa-copy"></i> <span data-i18n="btn_copy">Copy Code</span>
                 </button>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between">
@@ -429,11 +467,11 @@
                         </div>
                         <i class="fa-solid fa-shield-check text-amber-400 text-base"></i>
                     </div>
-                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Promo Code</span>
+                    <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider" data-i18n="promo_label">Promo Code</span>
                     <div class="text-xl font-black text-white font-mono tracking-wider mt-1 mb-2">99WIN</div>
                 </div>
                 <button onclick="copyCode('99WIN', this)" class="w-full mt-3 gold-button font-extrabold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2">
-                    <i class="fa-regular fa-copy"></i> Copy Code
+                    <i class="fa-regular fa-copy"></i> <span data-i18n="btn_copy">Copy Code</span>
                 </button>
             </div>
         </div>
@@ -442,8 +480,8 @@
     <!-- 4. REGISTER LINKS PAGE -->
     <section id="page-registers" class="page-section py-10 px-4 max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-10">
-            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white">Official Register Links</h2>
-            <p class="text-slate-400 text-xs mt-2">Access certified secure partner platform gateways directly</p>
+            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white" data-i18n="reg_page_title">Official Register Links</h2>
+            <p class="text-slate-400 text-xs mt-2" data-i18n="reg_page_sub">Access certified secure partner platform gateways directly</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
@@ -452,9 +490,9 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1786909042/1xbet-logo-png_seeklogo-355459_gkt36n.png" class="w-8 h-8 object-contain rounded-xl bg-slate-900 p-1 border border-amber-500/20">
                         <h3 class="font-extrabold text-base text-white">1xbet Registration</h3>
                     </div>
-                    <p class="text-[11px] text-slate-400 mb-4">Official verified secure portal link</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="reg_portal_desc">Official verified secure portal link</p>
                 </div>
-                <a href="#" onclick="alert('Redirecting to 1xbet secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg">Open Register Link</a>
+                <a href="#" onclick="alert('Redirecting to 1xbet secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg" data-i18n="btn_open_link">Open Register Link</a>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
                 <div>
@@ -462,9 +500,9 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1786909042/images_iloiko.jpg" class="w-8 h-8 object-contain rounded-xl bg-slate-900 p-1 border border-amber-500/20">
                         <h3 class="font-extrabold text-base text-white">888starz Registration</h3>
                     </div>
-                    <p class="text-[11px] text-slate-400 mb-4">Official verified secure portal link</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="reg_portal_desc">Official verified secure portal link</p>
                 </div>
-                <a href="#" onclick="alert('Redirecting to 888starz secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg">Open Register Link</a>
+                <a href="#" onclick="alert('Redirecting to 888starz secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg" data-i18n="btn_open_link">Open Register Link</a>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
                 <div>
@@ -472,9 +510,9 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1786909042/images_5_xqeooh.jpg" class="w-8 h-8 object-contain rounded-xl bg-slate-900 p-1 border border-amber-500/20">
                         <h3 class="font-extrabold text-base text-white">Melbet Registration</h3>
                     </div>
-                    <p class="text-[11px] text-slate-400 mb-4">Official verified secure portal link</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="reg_portal_desc">Official verified secure portal link</p>
                 </div>
-                <a href="#" onclick="alert('Redirecting to Melbet secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg">Open Register Link</a>
+                <a href="#" onclick="alert('Redirecting to Melbet secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg" data-i18n="btn_open_link">Open Register Link</a>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
                 <div>
@@ -482,9 +520,9 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1787196266/images_3_xdsung.png" class="w-8 h-8 object-contain rounded-xl bg-slate-900 p-1 border border-amber-500/20">
                         <h3 class="font-extrabold text-base text-white">Coldbet Registration</h3>
                     </div>
-                    <p class="text-[11px] text-slate-400 mb-4">Official verified secure portal link</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="reg_portal_desc">Official verified secure portal link</p>
                 </div>
-                <a href="#" onclick="alert('Redirecting to Coldbet secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg">Open Register Link</a>
+                <a href="#" onclick="alert('Redirecting to Coldbet secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg" data-i18n="btn_open_link">Open Register Link</a>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
                 <div>
@@ -492,9 +530,9 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1786909042/images_1_wjhdis.png" class="w-8 h-8 object-contain rounded-xl bg-slate-900 p-1 border border-amber-500/20">
                         <h3 class="font-extrabold text-base text-white">Dbbet Registration</h3>
                     </div>
-                    <p class="text-[11px] text-slate-400 mb-4">Official verified secure portal link</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="reg_portal_desc">Official verified secure portal link</p>
                 </div>
-                <a href="#" onclick="alert('Redirecting to Dbbet secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg">Open Register Link</a>
+                <a href="#" onclick="alert('Redirecting to Dbbet secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg" data-i18n="btn_open_link">Open Register Link</a>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
                 <div>
@@ -502,9 +540,9 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1786909042/images_2_x5jaao.png" class="w-8 h-8 object-contain rounded-xl bg-slate-900 p-1 border border-amber-500/20">
                         <h3 class="font-extrabold text-base text-white">Paripulse Registration</h3>
                     </div>
-                    <p class="text-[11px] text-slate-400 mb-4">Official verified secure portal link</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="reg_portal_desc">Official verified secure portal link</p>
                 </div>
-                <a href="#" onclick="alert('Redirecting to Paripulse secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg">Open Register Link</a>
+                <a href="#" onclick="alert('Redirecting to Paripulse secure registration...')" class="block gold-button font-extrabold py-3 rounded-xl text-xs shadow-lg" data-i18n="btn_open_link">Open Register Link</a>
             </div>
         </div>
     </section>
@@ -512,8 +550,8 @@
     <!-- 5. VIDEOS PAGE -->
     <section id="page-videos" class="page-section py-10 px-4 max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-10">
-            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white">Instructional Videos</h2>
-            <p class="text-slate-400 text-xs mt-2">Watch brand-specific official video tutorials</p>
+            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white" data-i18n="video_page_title">Instructional Videos</h2>
+            <p class="text-slate-400 text-xs mt-2" data-i18n="video_page_sub">Watch brand-specific official video tutorials</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
@@ -522,10 +560,10 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1786909042/1xbet-logo-png_seeklogo-355459_gkt36n.png" class="w-full h-full object-contain rounded-lg">
                     </div>
                     <h3 class="font-extrabold text-base text-white mb-1.5">1xbet Video</h3>
-                    <p class="text-[11px] text-slate-400 mb-4">Official 1xbet registration & usage tutorial.</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="video_desc_tutor">Official registration & usage tutorial.</p>
                 </div>
                 <button onclick="alert('Playing 1xbet Video tutorial...')" class="w-full gold-button font-extrabold py-2.5 rounded-xl text-xs shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-circle-play"></i> Watch Video
+                    <i class="fa-solid fa-circle-play"></i> <span data-i18n="btn_watch">Watch Video</span>
                 </button>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
@@ -534,10 +572,10 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1786909042/images_iloiko.jpg" class="w-full h-full object-contain rounded-lg">
                     </div>
                     <h3 class="font-extrabold text-base text-white mb-1.5">888Starz Video</h3>
-                    <p class="text-[11px] text-slate-400 mb-4">Official 888Starz registration & usage tutorial.</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="video_desc_tutor">Official registration & usage tutorial.</p>
                 </div>
                 <button onclick="alert('Playing 888Starz Video tutorial...')" class="w-full gold-button font-extrabold py-2.5 rounded-xl text-xs shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-circle-play"></i> Watch Video
+                    <i class="fa-solid fa-circle-play"></i> <span data-i18n="btn_watch">Watch Video</span>
                 </button>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
@@ -546,10 +584,10 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1786909042/images_5_xqeooh.jpg" class="w-full h-full object-contain rounded-lg">
                     </div>
                     <h3 class="font-extrabold text-base text-white mb-1.5">Melbet Video</h3>
-                    <p class="text-[11px] text-slate-400 mb-4">Official Melbet registration & usage tutorial.</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="video_desc_tutor">Official registration & usage tutorial.</p>
                 </div>
                 <button onclick="alert('Playing Melbet Video tutorial...')" class="w-full gold-button font-extrabold py-2.5 rounded-xl text-xs shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-circle-play"></i> Watch Video
+                    <i class="fa-solid fa-circle-play"></i> <span data-i18n="btn_watch">Watch Video</span>
                 </button>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
@@ -558,10 +596,10 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1786909042/images_1_wjhdis.png" class="w-full h-full object-contain rounded-lg">
                     </div>
                     <h3 class="font-extrabold text-base text-white mb-1.5">Dbbet Video</h3>
-                    <p class="text-[11px] text-slate-400 mb-4">Official Dbbet registration & usage tutorial.</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="video_desc_tutor">Official registration & usage tutorial.</p>
                 </div>
                 <button onclick="alert('Playing Dbbet Video tutorial...')" class="w-full gold-button font-extrabold py-2.5 rounded-xl text-xs shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-circle-play"></i> Watch Video
+                    <i class="fa-solid fa-circle-play"></i> <span data-i18n="btn_watch">Watch Video</span>
                 </button>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
@@ -570,10 +608,10 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1787196266/images_3_xdsung.png" class="w-full h-full object-contain rounded-lg">
                     </div>
                     <h3 class="font-extrabold text-base text-white mb-1.5">Coldbet Video</h3>
-                    <p class="text-[11px] text-slate-400 mb-4">Official Coldbet registration & usage tutorial.</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="video_desc_tutor">Official registration & usage tutorial.</p>
                 </div>
                 <button onclick="alert('Playing Coldbet Video tutorial...')" class="w-full gold-button font-extrabold py-2.5 rounded-xl text-xs shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-circle-play"></i> Watch Video
+                    <i class="fa-solid fa-circle-play"></i> <span data-i18n="btn_watch">Watch Video</span>
                 </button>
             </div>
             <div class="luxury-card p-5 rounded-2xl flex flex-col justify-between text-center">
@@ -582,10 +620,10 @@
                         <img src="https://res.cloudinary.com/lxpwsptv/image/upload/v1786909042/images_2_x5jaao.png" class="w-full h-full object-contain rounded-lg">
                     </div>
                     <h3 class="font-extrabold text-base text-white mb-1.5">Paripulse Video</h3>
-                    <p class="text-[11px] text-slate-400 mb-4">Official Paripulse registration & usage tutorial.</p>
+                    <p class="text-[11px] text-slate-400 mb-4" data-i18n="video_desc_tutor">Official registration & usage tutorial.</p>
                 </div>
                 <button onclick="alert('Playing Paripulse Video tutorial...')" class="w-full gold-button font-extrabold py-2.5 rounded-xl text-xs shadow-lg flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-circle-play"></i> Watch Video
+                    <i class="fa-solid fa-circle-play"></i> <span data-i18n="btn_watch">Watch Video</span>
                 </button>
             </div>
         </div>
@@ -594,8 +632,8 @@
     <!-- 6. GROUPS PAGE -->
     <section id="page-groups" class="page-section py-10 px-4 max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-10">
-            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white">Community Groups</h2>
-            <p class="text-slate-400 text-xs mt-2">Join our active channels for instant notices</p>
+            <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white" data-i18n="group_page_title">Community Groups</h2>
+            <p class="text-slate-400 text-xs mt-2" data-i18n="group_page_sub">Join our active channels for instant notices</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
             <div class="luxury-card p-6 rounded-2xl flex items-center justify-between">
@@ -604,11 +642,11 @@
                         <i class="fa-brands fa-telegram"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-white text-sm">Telegram Channel</h3>
-                        <p class="text-[11px] text-slate-400">Instant updates & alerts</p>
+                        <h3 class="font-bold text-white text-sm" data-i18n="tg_channel_title">Telegram Channel</h3>
+                        <p class="text-[11px] text-slate-400" data-i18n="tg_channel_sub">Instant updates & alerts</p>
                     </div>
                 </div>
-                <a href="https://t.me/+TSFaCM4A_jY5ZTdl" target="_blank" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs shadow-lg transition-all">Join</a>
+                <a href="https://t.me/+TSFaCM4A_jY5ZTdl" target="_blank" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs shadow-lg transition-all" data-i18n="btn_join">Join</a>
             </div>
             <div class="luxury-card p-6 rounded-2xl flex items-center justify-between">
                 <div class="flex items-center space-x-3">
@@ -616,11 +654,11 @@
                         <i class="fa-brands fa-whatsapp"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-white text-sm">WhatsApp Support</h3>
-                        <p class="text-[11px] text-slate-400">Direct assistance chat</p>
+                        <h3 class="font-bold text-white text-sm" data-i18n="wa_support_title">WhatsApp Support</h3>
+                        <p class="text-[11px] text-slate-400" data-i18n="wa_support_sub">Direct assistance chat</p>
                     </div>
                 </div>
-                <a href="https://chat.whatsapp.com/JFUTrc6p7H5AiYXqSnw9tT" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-lg transition-all">Join</a>
+                <a href="https://chat.whatsapp.com/JFUTrc6p7H5AiYXqSnw9tT" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-lg transition-all" data-i18n="btn_join">Join</a>
             </div>
         </div>
 
@@ -631,12 +669,12 @@
                         <i class="fa-solid fa-money-bill-transfer"></i>
                     </div>
                     <div>
-                        <h3 class="font-bold text-white text-sm">Cash Agent Service</h3>
-                        <p class="text-[11px] text-slate-400">Fast and secure direct deposit/withdrawal handling</p>
+                        <h3 class="font-bold text-white text-sm" data-i18n="agent_service_title">Cash Agent Service</h3>
+                        <p class="text-[11px] text-slate-400" data-i18n="agent_service_sub">Fast and secure direct deposit/withdrawal handling</p>
                     </div>
                 </div>
                 <a href="https://t.me/Prakash_Academy_Supported" target="_blank" class="gold-button font-extrabold px-5 py-2.5 rounded-xl text-xs shadow-lg flex items-center gap-2 whitespace-nowrap">
-                    <i class="fa-brands fa-telegram"></i> Contact Agent
+                    <i class="fa-brands fa-telegram"></i> <span data-i18n="btn_contact_agent">Contact Agent</span>
                 </a>
             </div>
         </div>
@@ -647,22 +685,22 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
             
             <div>
-                <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white mb-3">Contact Our 24/7 Team</h2>
-                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">Reach out to our round-the-clock support crew anytime for instant troubleshooting or platform inquiries.</p>
+                <h2 class="text-2xl sm:text-4xl font-black font-cinzel text-white mb-3" data-i18n="contact_page_title">Contact Our 24/7 Team</h2>
+                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4" data-i18n="contact_page_sub">Reach out to our round-the-clock support crew anytime for instant troubleshooting or platform inquiries.</p>
                 
                 <div class="space-y-2.5 text-xs sm:text-sm text-slate-300 mb-6">
                     <p class="flex items-center"><i class="fa-solid fa-envelope text-amber-400 mr-3 w-5"></i> Prakashviduralakshan@gmail.com</p>
                     <p class="flex items-center"><i class="fa-solid fa-phone text-amber-400 mr-3 w-5"></i> 0722945927 / 0727303493</p>
-                    <p class="flex items-center"><i class="fa-solid fa-location-dot text-amber-400 mr-3 w-5"></i> Srilankan</p>
+                    <p class="flex items-center"><i class="fa-solid fa-location-dot text-amber-400 mr-3 w-5"></i> <span data-i18n="location_text">Srilankan</span></p>
                 </div>
                 
                 <div class="space-y-2.5 mb-6">
                     <a href="https://t.me/Prakash_Academy_Supported" target="_blank" class="telegram-btn inline-flex items-center gap-2.5 px-5 py-3 rounded-xl font-extrabold text-xs">
-                        <i class="fa-brands fa-telegram text-base"></i> Contact To Telegram
+                        <i class="fa-brands fa-telegram text-base"></i> <span data-i18n="btn_contact_tg">Contact To Telegram</span>
                     </a>
                     <div>
                         <a href="https://t.me/Prakash_Academy_Supported" target="_blank" class="gold-button inline-flex items-center gap-2.5 px-5 py-3 rounded-xl font-extrabold text-xs mt-2">
-                            <i class="fa-solid fa-money-bill-transfer text-base"></i> Contact To Cash Agent
+                            <i class="fa-solid fa-money-bill-transfer text-base"></i> <span data-i18n="btn_contact_cash">Contact To Cash Agent</span>
                         </a>
                     </div>
                 </div>
@@ -670,14 +708,14 @@
                 <div class="luxury-glass p-5 rounded-2xl border border-amber-500/20">
                     <div class="flex items-center justify-between mb-3">
                         <h3 class="text-xs font-bold text-amber-400 font-cinzel flex items-center gap-2">
-                            <i class="fa-solid fa-inbox"></i> Sent Messages Inbox
+                            <i class="fa-solid fa-inbox"></i> <span data-i18n="inbox_title">Sent Messages Inbox</span>
                         </h3>
                         <button onclick="clearHistory()" class="text-[10px] bg-red-500/20 hover:bg-red-500/40 text-red-300 font-semibold px-2.5 py-1 rounded-lg border border-red-500/30 transition-all flex items-center gap-1">
-                            <i class="fa-solid fa-trash-can"></i> Delete
+                            <i class="fa-solid fa-trash-can"></i> <span data-i18n="btn_delete">Delete</span>
                         </button>
                     </div>
                     <div id="inbox-messages-container" class="space-y-2.5 max-h-60 overflow-y-auto pr-1">
-                        <p class="text-[11px] text-slate-500 italic text-center py-3">No sent messages yet.</p>
+                        <p class="text-[11px] text-slate-500 italic text-center py-3" data-i18n="inbox_empty">No sent messages yet.</p>
                     </div>
                 </div>
             </div>
@@ -685,19 +723,19 @@
             <div class="luxury-glass p-6 sm:p-8 rounded-2xl">
                 <form id="telegram-contact-form" onsubmit="sendTelegramMessage(event)">
                     <div class="mb-3">
-                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Your Name</label>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5" data-i18n="form_name">Your Name</label>
                         <input type="text" id="sender-name" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/20 text-white text-xs sm:text-sm focus:outline-none focus:border-amber-400" placeholder="Enter your name">
                     </div>
                     <div class="mb-3">
-                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">WhatsApp Number (Only Numbers)</label>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5" data-i18n="form_whatsapp">WhatsApp Number (Only Numbers)</label>
                         <input type="tel" id="sender-contact" required pattern="[0-9]+" title="කරුණාකර අංක පමණක් ඇතුළත් කරන්න (Numbers only)" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/20 text-white text-xs sm:text-sm focus:outline-none focus:border-amber-400" placeholder="Enter WhatsApp number">
                     </div>
                     <div class="mb-4">
-                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">Message</label>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5" data-i18n="form_msg">Message</label>
                         <textarea id="sender-message" rows="3" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/20 text-white text-xs sm:text-sm focus:outline-none focus:border-amber-400" placeholder="Type your message here..."></textarea>
                     </div>
-                    <button type="submit" id="submit-btn" class="w-full gold-button font-bold py-3 rounded-xl text-xs sm:text-sm">Send Message</button>
-                    <p class="text-[10px] text-amber-400/90 text-center mt-2.5 font-medium">ඔබ පණිවිඩයක් යොමු කළ පසු ඔබට රිප්ලයි එකක් ඔබගේ WhatsApp අංකයට ලැබෙනු ඇත.</p>
+                    <button type="submit" id="submit-btn" class="w-full gold-button font-bold py-3 rounded-xl text-xs sm:text-sm" data-i18n="btn_send">Send Message</button>
+                    <p class="text-[10px] text-amber-400/90 text-center mt-2.5 font-medium" data-i18n="form_notice">ඔබ පණිවිඩයක් යොමු කළ පසු ඔබට රිප්ලයි එකක් ඔබගේ WhatsApp අංකයට ලැබෙනු ඇත.</p>
                 </form>
             </div>
 
@@ -714,12 +752,12 @@
             <div class="w-12 h-12 mx-auto rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-3 border border-amber-500/20">
                 <i class="fa-solid fa-graduation-cap"></i>
             </div>
-            <h3 class="text-base font-bold font-cinzel text-white mb-2">ප්‍රකාශ් ඇකඩමිය</h3>
-            <p class="text-slate-300 text-xs leading-relaxed mb-5">
+            <h3 class="text-base font-bold font-cinzel text-white mb-2" data-i18n="modal_join_title">ප්‍රකාශ් ඇකඩමිය</h3>
+            <p class="text-slate-300 text-xs leading-relaxed mb-5" data-i18n="modal_join_desc">
                 මෙම පාඨමාලාව සඳහා සම්බන්ධ වීමට දැන්ම ප්‍රකාශ් ඇකඩමි ආයතනයේ ඇඩ්මින්ව සම්බන්ධ කරගෙන අදාල විස්තර ලබාගෙන පාඨමාලාව හා සම්බන්ධ වන්න.
             </p>
             <a href="https://t.me/Prakash_Academy_Supported" target="_blank" class="gold-button font-extrabold w-full py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg">
-                <i class="fa-brands fa-telegram text-sm"></i> Contact To Admin
+                <i class="fa-brands fa-telegram text-sm"></i> <span data-i18n="btn_contact_admin">Contact To Admin</span>
             </a>
         </div>
     </div>
@@ -733,20 +771,20 @@
                 <div class="w-12 h-12 mx-auto rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-2.5 border border-amber-500/20">
                     <i class="fa-solid fa-lock"></i>
                 </div>
-                <h3 class="text-base font-bold font-cinzel text-white">Student Login</h3>
-                <p class="text-slate-400 text-[11px] mt-1">Enter your credentials to access protected content</p>
+                <h3 class="text-base font-bold font-cinzel text-white" data-i18n="login_title">Student Login</h3>
+                <p class="text-slate-400 text-[11px] mt-1" data-i18n="login_sub">Enter your credentials to access protected content</p>
             </div>
             
             <form onsubmit="handleStudentLogin(event)">
                 <div class="mb-3">
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Student ID</label>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5" data-i18n="label_student_id">Student ID</label>
                     <input type="text" id="student-id" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/20 text-white text-xs focus:outline-none focus:border-amber-400" placeholder="Enter student ID">
                 </div>
                 <div class="mb-4">
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Student Password</label>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5" data-i18n="label_password">Student Password</label>
                     <input type="password" id="student-pass" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-amber-500/20 text-white text-xs focus:outline-none focus:border-amber-400" placeholder="Enter password">
                 </div>
-                <button type="submit" class="gold-button font-bold w-full py-3 rounded-xl text-xs shadow-lg">Login Now</button>
+                <button type="submit" class="gold-button font-bold w-full py-3 rounded-xl text-xs shadow-lg" data-i18n="btn_login">Login Now</button>
             </form>
         </div>
     </div>
@@ -759,11 +797,11 @@
             <div class="w-12 h-12 mx-auto rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl mb-3 border border-red-500/20">
                 <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
-            <h3 class="text-base font-bold font-cinzel text-white mb-2">දෝෂයකි (Access Denied)</h3>
-            <p class="text-slate-300 text-xs leading-relaxed mb-5">
+            <h3 class="text-base font-bold font-cinzel text-white mb-2" data-i18n="wrong_title">දෝෂයකි (Access Denied)</h3>
+            <p class="text-slate-300 text-xs leading-relaxed mb-5" data-i18n="wrong_desc">
                 කරුණාකර ආයතනය විසින් ලබා දුන් නිවැරදි Student ID එක (SP1234) සහ Password එක (SR1234) යොදලා ලොගින් වෙන්න.
             </p>
-            <button onclick="closeModal('wrong-pass-modal'); openLoginModal(currentAttemptType);" class="gold-button font-extrabold w-full py-2.5 rounded-xl text-xs">
+            <button onclick="closeModal('wrong-pass-modal'); openLoginModal(currentAttemptType);" class="gold-button font-extrabold w-full py-2.5 rounded-xl text-xs" data-i18n="btn_try_again">
                 Try Again
             </button>
         </div>
@@ -777,11 +815,11 @@
             <div class="w-14 h-14 mx-auto rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mb-3 border border-amber-500/20">
                 <i class="fa-solid fa-tv"></i>
             </div>
-            <h3 class="text-base font-bold font-cinzel text-white mb-1">Live Classes Portal</h3>
-            <p class="text-slate-400 text-[11px] mb-4">Live training session status</p>
+            <h3 class="text-base font-bold font-cinzel text-white mb-1" data-i18n="live_modal_title">Live Classes Portal</h3>
+            <p class="text-slate-400 text-[11px] mb-4" data-i18n="live_modal_sub">Live training session status</p>
             
             <div class="p-4 rounded-xl bg-slate-900/90 border border-amber-500/20">
-                <p class="text-xs text-amber-400 font-semibold leading-relaxed">
+                <p class="text-xs text-amber-400 font-semibold leading-relaxed" data-i18n="live_modal_desc">
                     ඇඩ්මින් විසින් ලයිව් සෙෂන් එකක් ඇතුළත් කර නැත. මෙම මොහොතේ කිසිදු සජීවී පන්තියක් ක්‍රියාත්මක නොවේ.
                 </p>
             </div>
@@ -792,8 +830,8 @@
         <div class="luxury-glass max-w-lg w-full p-6 rounded-2xl relative border border-amber-500/40 max-h-[85vh] flex flex-col">
             <div class="flex justify-between items-center mb-4">
                 <div>
-                    <h3 class="text-base font-bold font-cinzel text-white">Class Recordings</h3>
-                    <p class="text-slate-400 text-[11px]">Select session to watch recording</p>
+                    <h3 class="text-base font-bold font-cinzel text-white" data-i18n="rec_modal_title">Class Recordings</h3>
+                    <p class="text-slate-400 text-[11px]" data-i18n="rec_modal_sub">Select session to watch recording</p>
                 </div>
                 <button onclick="closeModal('recordings-modal')" class="text-slate-400 hover:text-white text-sm w-7 h-7 rounded-full bg-slate-900 flex items-center justify-center border border-amber-500/20">
                     <i class="fa-solid fa-xmark"></i>
@@ -821,7 +859,7 @@
 
     <!-- Footer -->
     <footer class="luxury-glass border-t border-amber-500/20 py-6 mt-12 text-center text-[11px] text-slate-400 relative z-10 w-full">
-        <p>&copy; 2026 Prakash Academy. All Rights Reserved. 18+ Play Responsibly.</p>
+        <p data-i18n="footer_text">&copy; 2026 Prakash Academy. All Rights Reserved. 18+ Play Responsibly.</p>
     </footer>
 
     <!-- Script -->
@@ -830,6 +868,347 @@
         const TELEGRAM_CHAT_ID = "8441230005";
 
         let currentAttemptType = '';
+
+        // Translations Data (EN, SI, TA)
+        const translations = {
+            en: {
+                portal_title: "Official VIP Portal",
+                nav_home: "Home",
+                nav_services: "Services",
+                nav_crypto: "Crypto & Forex",
+                nav_promos: "Promo Codes",
+                nav_registers: "Register Links",
+                nav_videos: "Videos",
+                nav_groups: "Groups",
+                nav_contact: "Contact Us",
+                home_badge: "Prakash Academy Premium Hub",
+                home_welcome: "Welcome to",
+                home_desc: "Your premier, trusted destination for verified international platform gateways, exclusive VIP bonus promo codes, and dedicated 24/7 technical customer assistance.",
+                btn_crypto_forex: "Crypto & Forex Trading",
+                btn_open_registers: "Open Register Links",
+                btn_view_promos: "View Promo Codes",
+                services_heading: "OUR EXCLUSIVE VIP SERVICES",
+                ticker_sub: "Scrolls automatically / Hover to pause",
+                srv_1_title: "Crypto & Forex Trading",
+                srv_1_desc: "Master professional digital asset trading with structured expert guidance and live sessions.",
+                srv_2_title: "24/7 Customer Service",
+                srv_2_desc: "Round-the-clock dedicated assistance and live support for all your platform needs.",
+                srv_3_title: "Agent Deposit & Withdrawal Service",
+                srv_3_desc: "Fast, trusted, and secure deposit and withdrawal execution via authorized agents.",
+                srv_4_title: "Manager Service",
+                srv_4_desc: "Personalized account management guidance and expert administrative consultation.",
+                srv_5_title: "Signal Service",
+                srv_5_desc: "Precise tactical signals and analytical insights to boost your operational success.",
+                srv_6_title: "Betslip Service",
+                srv_6_desc: "Expertly verified betslips and structural game plans across all major platforms.",
+                services_page_title: "Our VIP Services",
+                services_page_sub: "Professional digital assistance and guidance tailored for you",
+                crypto_badge: "Professional Mentorship",
+                crypto_title: "Crypto & Forex Trading",
+                crypto_sub: "Master trading from scratch with Prakash Academy",
+                crypto_box_title: "Course Overview",
+                crypto_main_desc: "Through Prakash Academy, you have the opportunity to learn complete cryptocurrency and forex market trading from scratch. You will be taught everything simply and step-by-step from the very beginning, complete with unlimited recordings, over 100 revision sessions per year, live trading sessions to grow child accounts, and advanced training to analyze charts independently, generate your own signals, and reach high profitability levels. Plus, receive weekly $3 gift vouchers during the course! Additionally, get 100% free lifetime VIP signal groups, free market update groups, and lifetime customer service support.",
+                btn_join_course: "Join Course",
+                btn_live_classes: "Live Classes",
+                btn_recordings: "Recordings",
+                promo_page_title: "Official Partner Promo Codes",
+                promo_page_sub: "Click to copy your required official promo code instantly",
+                promo_label: "Promo Code",
+                btn_copy: "Copy Code",
+                reg_page_title: "Official Register Links",
+                reg_page_sub: "Access certified secure partner platform gateways directly",
+                reg_portal_desc: "Official verified secure portal link",
+                btn_open_link: "Open Register Link",
+                video_page_title: "Instructional Videos",
+                video_page_sub: "Watch brand-specific official video tutorials",
+                video_desc_tutor: "Official registration & usage tutorial.",
+                btn_watch: "Watch Video",
+                group_page_title: "Community Groups",
+                group_page_sub: "Join our active channels for instant notices",
+                tg_channel_title: "Telegram Channel",
+                tg_channel_sub: "Instant updates & alerts",
+                wa_support_title: "WhatsApp Support",
+                wa_support_sub: "Direct assistance chat",
+                btn_join: "Join",
+                agent_service_title: "Cash Agent Service",
+                agent_service_sub: "Fast and secure direct deposit/withdrawal handling",
+                btn_contact_agent: "Contact Agent",
+                contact_page_title: "Contact Our 24/7 Team",
+                contact_page_sub: "Reach out to our round-the-clock support crew anytime for instant troubleshooting or platform inquiries.",
+                location_text: "Sri Lanka",
+                btn_contact_tg: "Contact To Telegram",
+                btn_contact_cash: "Contact To Cash Agent",
+                inbox_title: "Sent Messages Inbox",
+                btn_delete: "Delete",
+                inbox_empty: "No sent messages yet.",
+                form_name: "Your Name",
+                form_whatsapp: "WhatsApp Number (Only Numbers)",
+                form_msg: "Message",
+                btn_send: "Send Message",
+                form_notice: "Once you submit your message, you will receive a reply on your WhatsApp number.",
+                modal_join_title: "Prakash Academy",
+                modal_join_desc: "To join this course, please contact the Prakash Academy admin now to get the details and enroll.",
+                btn_contact_admin: "Contact To Admin",
+                login_title: "Student Login",
+                login_sub: "Enter your credentials to access protected content",
+                label_student_id: "Student ID",
+                label_password: "Student Password",
+                btn_login: "Login Now",
+                wrong_title: "Access Denied",
+                wrong_desc: "Please login using the correct Student ID (SP1234) and Password (SR1234) provided by the academy.",
+                btn_try_again: "Try Again",
+                live_modal_title: "Live Classes Portal",
+                live_modal_sub: "Live training session status",
+                live_modal_desc: "No live session has been added by the admin. There are no active live classes at this moment.",
+                rec_modal_title: "Class Recordings",
+                rec_modal_sub: "Select session to watch recording",
+                footer_text: "&copy; 2026 Prakash Academy. All Rights Reserved. 18+ Play Responsibly."
+            },
+            si: {
+                portal_title: "නිල VIP ද්වාරය",
+                nav_home: "මුල් පිටුව",
+                nav_services: "සේවාවන්",
+                nav_crypto: "ක්‍රිප්ටෝ සහ ෆොරෙක්ස්",
+                nav_promos: "ප්‍රෝමෝ කෝඩ්ස්",
+                nav_registers: "ලියාපදිංචි ලින්ක්",
+                nav_videos: "වීඩියෝ",
+                nav_groups: "කණ්ඩායම්",
+                nav_contact: "අප අමතන්න",
+                home_badge: "ප්‍රකාශ් ඇකඩමි ප්‍රිමියම් හබ්",
+                home_welcome: "සාදරයෙන් පිළිගනිමු",
+                home_desc: "ජාත්‍යන්තර වේදිකා වෙත පිවිසීමට විශ්වාසනීය ගමනාන්තය, සුවිශේෂී VIP බෝනස් ප්‍රෝමෝ කෝඩ් සහ 24/7 තාක්ෂණික පාරිභෝගික සහය.",
+                btn_crypto_forex: "ක්‍රිප්ටෝ සහ ෆොරෙක්ස් ට්‍රේඩින්",
+                btn_open_registers: "ලියාපදිංචි වන්න",
+                btn_view_promos: "ප්‍රෝමෝ කෝඩ් බලන්න",
+                services_heading: "අපගේ සුවිශේෂී VIP සේවාවන්",
+                ticker_sub: "ස්වයංක්‍රීයව අනුගත වේ / නැවැත්වීමට මූසිකය මත තබන්න",
+                srv_1_title: "ක්‍රිප්ටෝ සහ ෆොරෙක්ස් ට්‍රේඩින්",
+                srv_1_desc: "වෘත්තීය මට්ටමේ ඩිජිටල් වත්කම් වෙළඳාම ව්‍යුහගත විශේෂඥ මඟ පෙන්වීම් සහ සජීවී සැසි හරහා ප්‍රගුණ කරන්න.",
+                srv_2_title: "24/7 පාරිභෝගික සේවාව",
+                srv_2_desc: "ඔබගේ සියලුම වේදිකා අවශ්‍යතා සඳහා පැය විසිහතර පුරාම කැප වූ සහය සහ සජීවී සහාය.",
+                srv_3_title: "නියෝජිත තැන්පතු සහ මුදල් ලබාගැනීමේ සේවාව",
+                srv_3_desc: "බලධාරී නියෝජිතයන් හරහා වේගවත්, විශ්වාසදායක සහ ආරක්ෂිත තැන්පතු සහ මුදල් ලබාගැනීමේ ක්‍රියාවලිය.",
+                srv_4_title: "කළමනාකරු සේවාව",
+                srv_4_desc: "පුද්ගලීකරණය කළ ගිණුම් කළමනාකරණ මඟ පෙන්වීම සහ විශේෂඥ පරිපාලන උපදේශන.",
+                srv_5_title: "සිග්නල් සේවාව",
+                srv_5_desc: "ඔබේ මෙහෙයුම් සාර්ථකත්වය ඉහළ නංවා ගැනීම සඳහා නිරවද්‍ය උපායශීලී සංඥා සහ විශ්ලේෂණ අවබෝධය.",
+                srv_6_title: "බෙට්ස්ලිප් සේවාව",
+                srv_6_desc: "ප්‍රධාන වේදිකා හරහා විශේෂඥයින් විසින් සත්‍යාපනය කරන ලද බෙට්ස්ලිප් සහ ව්‍යුහාත්මක ක්‍රීඩා සැලසුම්.",
+                services_page_title: "අපගේ VIP සේවාවන්",
+                services_page_sub: "ඔබ වෙනුවෙන්ම සකස් කරන ලද වෘත්තීය ඩිජිටල් සහය සහ මඟ පෙන්වීම",
+                crypto_badge: "වෘත්තීය උපදේශකත්වය",
+                crypto_title: "ක්‍රිප්ටෝ සහ ෆොරෙක්ස් ට්‍රේඩින්",
+                crypto_sub: "ප්‍රකාශ් ඇකඩමිය සමඟ මුල සිටම ට්‍රේඩින් ඉගෙන ගන්න",
+                crypto_box_title: "පාඨමාලා විස්තරය",
+                crypto_main_desc: "සම්පූර්ණ ක්‍රිප්ටෝ කරන්සි සහ ෆොරෙක්ස් මාර්කට් එකේ ට්‍රේඩින් ඉගෙන ගැනීමට ඔබට ප්‍රකාශ් ඇකඩමි හරහා හැකියාවක් ඇත. සම්පූර්ණ ඉගෙන ගැනීමේදී ඔබට මු සිට සරලව සියල්ල ඉගැන්වන අතර අන්ලිමිටඩ් රෙකෝඩින්ස් ලබා දීම, වසරකට රිවිෂන් සියයකට වඩා ප්‍රමාණයක් ලබා දීම, ලයිව් සෙෂන් ඔස්සේ ලයිව් ට්‍රේඩින් කර ළමා එකවුන්ට් එක අප් කරවීම, තමන්ටම ඇනලයිස් කොට තමන්ටම සිග්නල්ස් හදා ලොකු ප්‍රොෆිට් එකක් ගැනීමේ මට්ටමට ලබා දීම, කෝස් එක අතරතුර සෑම සතියකම ඩොලර්ස් 3 ක ගිෆ්ට් වවුචර් ලබා දීම සිදුකෙරේ. ඒ වගේම සම්පූර්ණයෙන්ම ලයිෆ් ටයිම් සිග්නල් VIP ගෘප් එකක් සහ මාර්කට් අප්ඩේට් ගෘප් එකක් සම්පූර්ණයෙන්ම නොමිලේ ලබා දෙන අතර, ලයිෆ් ටයිම් කස්ටමර් සර්විස් එකක් ද ලබා දෙනු ලැබේ.",
+                btn_join_course: "පාඨමාලාවට සම්බන්ධ වන්න",
+                btn_live_classes: "සජීවී පන්ති",
+                btn_recordings: "පටිගත කිරීම්",
+                promo_page_title: "නිල හවුල්කරුගේ ප්‍රෝමෝ කෝඩ්",
+                promo_page_sub: "ඔබට අවශ්‍ය නිල ප්‍රෝමෝ කෝඩ් එක ක්ලික් කිරීමෙන් කොපි කරගන්න",
+                promo_label: "ප්‍රෝමෝ කෝඩ් එක",
+                btn_copy: "කෝඩ් එක කොපි කරන්න",
+                reg_page_title: "නිල ලියාපදිංචි ලින්ක්",
+                reg_page_sub: "සත්‍යාපිත ආරක්ෂිත හවුල්කාර වේදිකා වෙත සෘජුවම පිවිසෙන්න",
+                reg_portal_desc: "නිල සත්‍යාපිත ආරක්ෂිත ද්වාර සබැඳිය",
+                btn_open_link: "ලින්ක් එක විවෘත කරන්න",
+                video_page_title: "උපදෙස් වීඩියෝ",
+                video_page_sub: "නිල වීඩියෝ නිබන්ධන නරඹන්න",
+                video_desc_tutor: "නිල ලියාපදිංචිය සහ භාවිතය පිළිබඳ නිබන්ධනය.",
+                btn_watch: "වීඩියෝව නරඹන්න",
+                group_page_title: "ප්‍රජා කණ්ඩායම්",
+                group_page_sub: "ක්ෂණික දැනුම්දීම් සඳහා අපගේ සක්‍රීය නාලිකාවලට සම්බන්ධ වන්න",
+                tg_channel_title: "ටෙලිග්‍රාම් නාලිකාව",
+                tg_channel_sub: "ක්ෂණික යාවත්කාලීන කිරීම් සහ ඇඟවීම්",
+                wa_support_title: "වට්ස්ඇප් සහය",
+                wa_support_sub: "සෘජු සහය කතාබහ",
+                btn_join: "සම්බන්ධ වන්න",
+                agent_service_title: "මුදල් නියෝජිත සේවාව",
+                agent_service_sub: "වේගවත් සහ ආරක්ෂිත සෘජු තැන්පතු/මුදල් ලබාගැනීමේ හැසිරවීම",
+                btn_contact_agent: "නියෝජිතයා අමතන්න",
+                contact_page_title: "අපගේ 24/7 කණ්ඩායම අමතන්න",
+                contact_page_sub: "ක්ෂණික දෝශ නිරාකරණය හෝ වේදිකා විමසීම් සඳහා ඕනෑම වේලාවක අපගේ සහකාර කණ්ඩායම අමතන්න.",
+                location_text: "ශ්‍රී ලාංකික",
+                btn_contact_tg: "ටෙලිග්‍රාම් වෙත අමතන්න",
+                btn_contact_cash: "මුදල් නියෝජිතයා අමතන්න",
+                inbox_title: "යවන ලද පණිවිඩ ලැබීම් පෙට්ටිය",
+                btn_delete: "මකන්න",
+                inbox_empty: "තවම පණිවිඩ යවා නැත.",
+                form_name: "ඔබේ නම",
+                form_whatsapp: "වට්ස්ඇප් අංකය (අංක පමණි)",
+                form_msg: "පණිවිඩය",
+                btn_send: "පණිවිඩය යවන්න",
+                form_notice: "ඔබ පණිවිඩයක් යොමු කළ පසු ඔබට රිප්ලයි එකක් ඔබගේ WhatsApp අංකයට ලැබෙනු ඇත.",
+                modal_join_title: "ප්‍රකාශ් ඇකඩමිය",
+                modal_join_desc: "මෙම පාඨමාලාව සඳහා සම්බන්ධ වීමට දැන්ම ප්‍රකාශ් ඇකඩමි ආයතනයේ ඇඩ්මින්ව සම්බන්ධ කරගෙන අදාල විස්තර ලබාගෙන පාඨමාලාව හා සම්බන්ධ වන්න.",
+                btn_contact_admin: "ඇඩ්මින් අමතන්න",
+                login_title: "ශිෂ්‍ය පිවිසුම",
+                login_sub: "ආරක්ෂිත අන්තර්ගතයට ප්‍රවේශ වීමට ඔබේ අක්තපත්‍ර ඇතුළත් කරන්න",
+                label_student_id: "ශිෂ්‍ය හැඳුනුම්පත (Student ID)",
+                label_password: "මුරපදය (Password)",
+                btn_login: "දැන්ම ඇතුල් වන්න",
+                wrong_title: "දෝෂයකි (Access Denied)",
+                wrong_desc: "කරුණාකර ආයතනය විසින් ලබා දුන් නිවැරදි Student ID එක (SP1234) සහ Password එක (SR1234) යොදලා ලොගින් වෙන්න.",
+                btn_try_again: "නැවත උත්සාහ කරන්න",
+                live_modal_title: "සජීවී පන්ති ද්වාරය",
+                live_modal_sub: "සජීවී පුහුණු සැසි තත්ත්වය",
+                live_modal_desc: "ඇඩ්මින් විසින් ලයිව් සෙෂන් එකක් ඇතුළත් කර නැත. මෙම මොහොතේ කිසිදු සජීවී පන්තියක් ක්‍රියාත්මක නොවේ.",
+                rec_modal_title: "පන්ති පටිගත කිරීම්",
+                rec_modal_sub: "පටිගත කිරීම නැරඹීමට සැසිය තෝරන්න",
+                footer_text: "&copy; 2026 ප්‍රකාශ් ඇකඩමිය. සියලු හිමිකම් ඇවිරිණි. 18+ වගකීමෙන් ක්‍රීඩා කරන්න."
+            },
+            ta: {
+                portal_title: "அதிகாரப்பூர்வ VIP தளம்",
+                nav_home: "முகப்பு",
+                nav_services: "சேவைகள்",
+                nav_crypto: "கிரிப்டோ & ஃபாரெக்ஸ்",
+                nav_promos: "புரோமோ குறியீடுகள்",
+                nav_registers: "பதிவு இணைப்புகள்",
+                nav_videos: "வீடியோக்கள்",
+                nav_groups: "குழுக்கள்",
+                nav_contact: "தொடர்புக்கு",
+                home_badge: "பிரகாஷ் அகாடமி பிரீமியம் மையம்",
+                home_welcome: "நல்வரவு",
+                home_desc: "சர்வதேச தள நுழைவாயில்கள், பிரத்யேக VIP போனஸ் புரோமோ குறியீடுகள் மற்றும் 24/7 தொழில்நுட்ப வாடிக்கையாளர் உதவிக்கான நம்பகமான தளம்.",
+                btn_crypto_forex: "கிரிப்டோ & ஃபாரெக்ஸ் வர்த்தகம்",
+                btn_open_registers: "பதிவு இணைப்புகளைத் திற",
+                btn_view_promos: "புரோமோ குறியீடுகளைப் பார்",
+                services_heading: "எங்கள் பிரத்யேக VIP சேவைகள்",
+                ticker_sub: "தானாக சுழலும் / இடைநிறுத்த மவுஸை வைக்கவும்",
+                srv_1_title: "கிரிப்டோ & ஃபாரெக்ஸ் வர்த்தகம்",
+                srv_1_desc: "நிபுணர் வழிகாட்டுதல் மற்றும் நேரலை அமர்வுகள் மூலம் தொழில்முறை டிஜிட்டல் சொத்து வர்த்தகத்தைக் கற்றுக்கொள்ளுங்கள்.",
+                srv_2_title: "24/7 வாடிக்கையாளர் சேவை",
+                srv_2_desc: "உங்கள் அனைத்து தள தேவைகளுக்கும் 24 மணி நேரமும் அர்ப்பணிக்கப்பட்ட உதவி மற்றும் நேரலை ஆதரவு.",
+                srv_3_title: "முகவர் டெபாசிட் & திரும்பப் பெறும் சேவை",
+                srv_3_desc: "அதிகாரப்பூர்வ முகவர்கள் மூலம் வேகமான, நம்பகமான மற்றும் பாதுகாப்பான டெபாசிட் மற்றும் திரும்பப் பெறும் செயல்முறை.",
+                srv_4_title: "மேலாளர் சேவை",
+                srv_4_desc: "தனிப்பயனாக்கப்பட்ட கணக்கு மேலாண்மை வழிகாட்டுதல் மற்றும் நிபுணர் நிர்வாக ஆலோசனை.",
+                srv_5_title: "சிக்னல் சேவை",
+                srv_5_desc: "உங்கள் செயல்பாட்டு வெற்றியை அதிகரிக்க துல்லியமான தந்திரமான சமிக்ஞைகள் மற்றும் பகுப்பாய்வு நுண்ணறிவு.",
+                srv_6_title: "பெட்ச்லிப் சேவை",
+                srv_6_desc: "அனைத்து முக்கிய தளங்களிலும் நிபுணர்களால் சரிபார்க்கப்பட்ட பெட்ச்லிப்கள் மற்றும் கட்டமைப்பு விளையாட்டுத் திட்டங்கள்.",
+                services_page_title: "எங்கள் VIP சேவைகள்",
+                services_page_sub: " உங்களுக்காக வடிவமைக்கப்பட்ட தொழில்முறை டிஜிட்டல் உதவி மற்றும் வழிகாட்டுதல்",
+                crypto_badge: "தொழில்முறை வழிகாட்டுதல்",
+                crypto_title: "கிரிப்டோ & ஃபாரெக்ஸ் வர்த்தகம்",
+                crypto_sub: "பிரகாஷ் அகாடமியுடன் முதல் சுழியத்திலிருந்து வர்த்தகத்தைக் கற்றுக்கொள்ளுங்கள்",
+                crypto_box_title: "பாடநெறி கண்ணோட்டம்",
+                crypto_main_desc: "பிரகாஷ் அகாடமி மூலம், முழுமையான கிரிப்டோகரன்சி மற்றும் ஃபாரெக்ஸ் சந்தை வர்த்தகத்தை முதன்முதலில் இருந்து கற்றுக்கொள்ள உங்களுக்கு வாய்ப்பு உள்ளது. எல்லாவற்றையும் எளிமையாகவும் படிப்படியாகவும் கற்றுக்கொடுக்கப்படும், வரம்பற்ற பதிவுகள், ஆண்டுக்கு 100 க்கும் மேற்பட்ட திருத்த அமர்வுகள், குழந்தைக் கணக்குகளை வளர்க்க நேரலை வர்த்தக அமர்வுகள் மற்றும் விளக்கப்படங்களை சுயாதீனமாக பகுப்பாய்வு செய்ய மேம்பட்ட பயிற்சி வழங்கப்படும். மேலும் பாடநெட்சியின் போது வாராந்திர $3 பரிசு வவுச்சர்களைப் பெறுங்கள்!",
+                btn_join_course: "பாடநெறியில் இணையுங்கள்",
+                btn_live_classes: "நேரலை வகுப்புகள்",
+                btn_recordings: "பதிவுகள்",
+                promo_page_title: "அதிகாரப்பூர்வ பங்குதாரர் புரோமோ குறியீடுகள்",
+                promo_page_sub: "உங்களுக்குத் தேவையான அதிகாரப்பூர்வ புரோமோ குறியீட்டை உடனடியாக நகலெடுக்க கிளிக் செய்யவும்",
+                promo_label: "புரோமோ குறியீடு",
+                btn_copy: "குறியீட்டை நகலெடு",
+                reg_page_title: "அதிகாரப்பூர்வ பதிவு இணைப்புகள்",
+                reg_page_sub: "சான்றளிக்கப்பட்ட பாதுகாப்பான கூட்டாளர் தள நுழைவாயில்களை நேரடியாக அணுகவும்",
+                reg_portal_desc: "அதிகாரப்பூர்வ சரிபார்க்கப்பட்ட பாதுகாப்பான தள இணைப்பு",
+                btn_open_link: "இணைப்பைத் திற",
+                video_page_title: "பயிற்சி வீடியோக்கள்",
+                video_page_sub: "பிராண்ட் சார்ந்த அதிகாரப்பூர்வ வீடியோ பயிற்சிகளைப் பார்க்கவும்",
+                video_desc_tutor: "அதிகாரப்பூர்வ பதிவு மற்றும் பயன்பாட்டு பயிற்சி.",
+                btn_watch: "வீடியோவைப் பார்",
+                group_page_title: "சமூக குழுக்கள்",
+                group_page_sub: "உடனடி அறிவிப்புகளுக்கு எங்கள் செயலில் உள்ள சேனல்களில் இணையுங்கள்",
+                tg_channel_title: "டெலிகிராம் சேனல்",
+                tg_channel_sub: "உடனடி புதுப்பிப்புகள் மற்றும் எச்சரிக்கைகள்",
+                wa_support_title: "வாட்ஸ்அப் ஆதரவு",
+                wa_support_sub: "நேரடி உதவி அரட்டை",
+                btn_join: "இணையுங்கள்",
+                agent_service_title: "பண முகவர் சேவை",
+                agent_service_sub: "வேகமான மற்றும் பாதுகாப்பான நேரடி டெபாசிட்/திரும்பப் பெறுதல் கையாளுதல்",
+                btn_contact_agent: "முகவரைத் தொடர்பு கொள்ளவும்",
+                contact_page_title: "எங்கள் 24/7 குழுவைத் தொடர்பு கொள்ளவும்",
+                contact_page_sub: "உடனடி பிழைகூறல் அல்லது தள விசாரணைகளுக்கு எப்போது வேண்டுமானாலும் எங்கள் உதவிக் குழுவைத் தொடர்பு கொள்ளவும்.",
+                location_text: "இலங்கை",
+                btn_contact_tg: "டெலிகிராம் மூலம் தொடர்பு கொள்ளவும்",
+                btn_contact_cash: "பண முகவரைத் தொடர்பு கொள்ளவும்",
+                inbox_title: "அனுப்பிய செய்திகள் இன்பாக்ஸ்",
+                btn_delete: "நீக்கு",
+                inbox_empty: "இதுவரை அனுப்பப்பட்ட செய்திகள் இல்லை.",
+                form_name: "உங்கள் பெயர்",
+                form_whatsapp: "வாட்ஸ்அப் எண் (எண்கள் மட்டும்)",
+                form_msg: "செய்தி",
+                btn_send: "செய்தியை அனுப்பு",
+                form_notice: "நீங்கள் செய்தியை அனுப்பியதும், உங்கள் வாட்ஸ்அப் எண்ணுக்கு பதில் கிடைக்கும்.",
+                modal_join_title: "பிரகாஷ் அகாடமி",
+                modal_join_desc: "இந்தப் பாடநெறியில் இணைய, பிரகாஷ் அகாடமி நிர்வாகியைத் தொடர்பு கொண்டு விவரங்களைப் பெற்று இணையுங்கள்.",
+                btn_contact_admin: "நிர்வாகியைத் தொடர்பு கொள்ளவும்",
+                login_title: "மாணவர் உள்நுழைவு",
+                login_sub: "பாதுகாக்கப்பட்ட உள்ளடக்கத்தை அணுக உங்கள் நற்சான்றிதழ்களை உள்ளிடவும்",
+                label_student_id: "மாணவர் ஐடி",
+                label_password: "கடவுச்சொல்",
+                btn_login: "இப்போது உள்நுழைக",
+                wrong_title: "அணுகல் மறுக்கப்பட்டது",
+                wrong_desc: "அகாடமி வழங்கிய சரியான மாணவர் ஐடி (SP1234) மற்றும் கடவுச்சொல்லை (SR1234) பயன்படுத்தி உள்நுழையவும்.",
+                btn_try_again: "மீண்டும் முயற்சிக்கவும்",
+                live_modal_title: "நேரலை வகுப்பு தளம்",
+                live_modal_sub: "நேரலை பயிற்சி அமர்வு நிலை",
+                live_modal_desc: "நிர்வாகியால் நேரலை அமர்வு எதுவும் சேர்க்கப்படவில்லை. தற்போது எந்த நேரலை வகுப்புகளும் செயல்படவில்லை.",
+                rec_modal_title: "வகுப்பு பதிவுகள்",
+                rec_modal_sub: "பதிவைப் பார்க்க அமர்வைத் தேர்ந்தெடுக்கவும்",
+                footer_text: "&copy; 2026 பிரகாஷ் அகாඩමි. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை. 18+ பொறுப்புடன் விளையாடுங்கள்."
+            }
+        };
+
+        let currentLang = localStorage.getItem('prakash_portal_lang') || 'en';
+        let currentTheme = localStorage.getItem('prakash_portal_theme') || 'dark';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('prakash_portal_lang', lang);
+            
+            document.getElementById('language-select').value = lang;
+            document.getElementById('mobile-language-select').value = lang;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            const cryptoDesc = document.getElementById('crypto-main-desc');
+            if (cryptoDesc && translations[lang]['crypto_main_desc']) {
+                cryptoDesc.innerHTML = translations[lang]['crypto_main_desc'];
+            }
+        }
+
+        function toggleTheme() {
+            if (currentTheme === 'dark') {
+                currentTheme = 'light';
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                document.getElementById('theme-icon').className = "fa-solid fa-sun text-xs";
+                document.getElementById('mobile-theme-icon').className = "fa-solid fa-sun text-xs";
+            } else {
+                currentTheme = 'dark';
+                document.documentElement.classList.remove('light');
+                document.documentElement.classList.add('dark');
+                document.getElementById('theme-icon').className = "fa-solid fa-moon text-xs";
+                document.getElementById('mobile-theme-icon').className = "fa-solid fa-moon text-xs";
+            }
+            localStorage.setItem('prakash_portal_theme', currentTheme);
+        }
+
+        // Initialize theme and language on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (currentTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                document.getElementById('theme-icon').className = "fa-solid fa-sun text-xs";
+                document.getElementById('mobile-theme-icon').className = "fa-solid fa-sun text-xs";
+            } else {
+                document.documentElement.classList.remove('light');
+                document.documentElement.classList.add('dark');
+                document.getElementById('theme-icon').className = "fa-solid fa-moon text-xs";
+                document.getElementById('mobile-theme-icon').className = "fa-solid fa-moon text-xs";
+            }
+
+            changeLanguage(currentLang);
+            loadInboxHistory();
+        });
 
         function switchPage(pageId) {
             document.querySelectorAll('.page-section').forEach(p => {
@@ -939,7 +1318,7 @@
                 alert('An error occurred while sending the message.');
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Send Message';
+                submitBtn.innerHTML = translations[currentLang]['btn_send'] || 'Send Message';
             }
         }
 
@@ -955,7 +1334,7 @@
             let history = JSON.parse(localStorage.getItem('prakash_inbox_history')) || [];
 
             if (history.length === 0) {
-                container.innerHTML = `<p class="text-[11px] text-slate-500 italic text-center py-3">No sent messages yet.</p>`;
+                container.innerHTML = `<p class="text-[11px] text-slate-500 italic text-center py-3" data-i18n="inbox_empty">${translations[currentLang]['inbox_empty']}</p>`;
                 return;
             }
 
@@ -982,10 +1361,6 @@
             const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
             return text.replace(/[&<>"']/g, m => map[m]);
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadInboxHistory();
-        });
     </script>
 </body>
 </html>
